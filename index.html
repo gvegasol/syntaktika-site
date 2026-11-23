@@ -10,71 +10,149 @@
 </head>
 <body>
   <header class="site-header">
-    <div class="wrap">
+    <div class="wrap wide">
       <a class="brand" href="index.html"><img src="assets/logo.png" alt="">Syntaktika</a>
       <nav class="nav">
         <a href="index.html" aria-current="page">Overview</a>
         <a href="templates.html">Templates</a>
         <a href="components.html">Components</a>
-        <a href="https://github.com/gvegasol/Syntactics">GitHub</a>
       </nav>
+      <a class="btn btn-primary btn-sm header-cta" href="#install">Get started</a>
     </div>
   </header>
 
-  <main class="wrap">
-    <p class="lede">A Grasshopper plugin for the spatial analysis of floor plans, for Rhino 8.</p>
-    <p>Syntaktika brings established Space Syntax methods, such as isovists, together with new ones:
-      isovist thresholds and the medial axis. Almost every analysis starts
-      from an <a href="#environment">Environment</a>, the boundary and obstacles of a plan, and the methods
-      build on each other.</p>
+  <main class="home">
+    <!-- hero -->
+    <section class="hero">
+      <h1 class="hero-mark">
+        <picture>
+          <source srcset="assets/img/syntaktika-logo.webp" type="image/webp">
+          <img src="assets/img/syntaktika-logo.gif" width="1807" height="569" alt="Syntaktika">
+        </picture>
+      </h1>
+    </section>
 
+    <!-- intro -->
+    <section class="intro">
+      <div class="wrap">
+        <p class="lede">A toolkit bringing established and novel spatial analytics to Grasshopper. Isovists, grid-isovists, convex and axial maps, the Medial Axis Trasnsform, and more... </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#install">Install Syntaktika</a>
+          <a class="btn btn-secondary" href="templates.html">Browse templates</a>
+        </div>
+      </div>
+    </section>
 
-    <h2>Isovist analysis</h2>
-    <figure><img src="assets/img/isovist_path_th.gif" alt="An isovist and its thresholds moving along a path" loading="lazy"></figure>
-    <p>Compute the visibility polygon of any point, or of every cell of a grid, and measure its area,
-      perimeter, occlusivity and compactness. <em>Thresholds</em> partition an isovist according to how its
-      occluding edges relate to each other.</p>
+    <!-- methods -->
+    <section class="section">
+      <div class="wrap wide">
+        <p class="eyebrow">Methods</p>
+        <h2 class="section-title">What can you analyse?</h2>
+        <p class="section-lede">Almost every analysis starts from an <a href="#environment">Environment</a>, the
+          boundary and obstacles of a plan, and the methods build on each other.</p>
+        <div class="cards">
+          <article class="card">
+            <div class="card-media"><img src="assets/img/isovist_path_th.gif" alt="An isovist and its thresholds moving along a path" loading="lazy"></div>
+            <p class="card-label">Visibility</p>
+            <h3>Isovist Analysis</h3>
+            <p>Compute the visibility polygon of any point, or of every cell of a grid, and measure its area,
+              perimeter, occlusivity and compactness. <em>Thresholds</em> partition an isovist according to how
+              its occluding edges relate to each other.</p>
+            <a class="more" href="templates.html#simple-isovist">See the isovist templates</a>
+          </article>
+          <article class="card">
+            <div class="card-media"><img src="assets/img/MA_parts.png" alt="Medial axis parts by category" loading="lazy"></div>
+            <p class="card-label">Geometry</p>
+            <h3>Medial Axis Transform</h3>
+            <p>Reduce a plan to its medial axis: a graph-like skeleton that identifies the parts of a floorplan, 
+              and classifies each part as Line–Line, Convex–Line, Convex–Convex or
+              Concave.</p>
+            <a class="more" href="templates.html#medial-axis">See the medial axis template</a>
+          </article>
+        </div>
+      </div>
+    </section>
 
+    <!-- steps -->
+    <section class="section section-tint" id="install">
+      <div class="wrap wide">
+        <p class="eyebrow">How it works</p>
+        <h2 class="section-title">Get started in three steps</h2>
+        <ol class="steps">
+          <li>
+            <span class="step-n">01</span>
+            <h3>Install</h3>
+            <p>In Rhino 8, run <code>PackageManager</code>, search for <em>Syntaktika</em> and click Install.
+              Restart Rhino.</p>
+          </li>
+          <li>
+            <span class="step-n">02</span>
+            <h3>Open a template</h3>
+            <p>Place the <em>Templates</em> component (Syntaktika › General), right-click it and choose a
+              definition. See <a href="templates.html">Templates</a>.</p>
+          </li>
+          <li>
+            <span class="step-n">03</span>
+            <h3>Use your own plan</h3>
+            <p>Replace the <em>Boundary</em> and <em>Obstacles</em> curves with your geometry: right-click
+              the parameter and choose <em>Set one Curve</em> or <em>Set Multiple Curves</em>.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
 
-    <h2>Medial axis</h2>
-    <figure><img src="assets/img/MA_parts.png" alt="Medial axis parts by category" loading="lazy"></figure>
-    <p>Reduce a plan to its medial axis: a graph-like skeleton that keeps the essential geometry, describes
-      circulation, and classifies each part as Line–Line, Convex–Line, Convex–Convex or Concave.</p>
+    <!-- environment -->
+    <section class="section" id="environment">
+      <div class="wrap wide split">
+        <div>
+          <p class="eyebrow">Core concept</p>
+          <h2 class="section-title">The Environment</h2>
+        </div>
+        <div>
+          <p>Almost every analysis takes an <a href="components.html#environment">Environment</a>. It is built
+            from a closed <strong>boundary</strong> curve and any number of <strong>obstacles</strong> (walls,
+            columns, furniture). Curves are simplified into polylines, and their segments and corners are shared
+            by all analyses that use them.</p>
+          <p>Internally, the Environment works with integer coordinates, which keeps visibility and polygon
+            operations exact. <strong>Precision Scaling</strong> sets how many decimals are kept: <code>2</code>
+            means a model in metres is resolved to the centimetre.</p>
+          <p class="callout">Draw plans flat on the XY plane, close the boundary, and keep obstacles inside it.
+            Every template exposes Precision Scaling as a slider labelled <em>Number of decimals to represent
+            geometry</em>. The first run of the medial axis installs the Python 3 engine and the
+            <code>pyvoronoi</code> package automatically, which needs an internet connection once.</p>
+        </div>
+      </div>
+    </section>
 
-    <h2 id="install">Get started</h2>
-    <ol>
-      <li><strong>Install.</strong> In Rhino 8, run <code>PackageManager</code>, search for
-        <em>Syntaktika</em> and click Install. Restart Rhino.</li>
-      <li><strong>Open a template.</strong> In Grasshopper, place the <em>Templates</em> component
-        (Syntaktika › General), right-click it and choose a definition. Each template is a small, working
-        example of one analysis. See <a href="templates.html">Templates</a>.</li>
-      <li><strong>Use your own plan.</strong> Replace the <em>Boundary</em> and <em>Obstacles</em> curves
-        with your geometry: right-click the curve parameter and choose <em>Set one Curve</em> or
-        <em>Set Multiple Curves</em>.</li>
-    </ol>
-
-    <h2 id="environment">The Environment</h2>
-    <p>Almost every analysis takes an <a href="components.html#environment">Environment</a>. It is built
-      from a closed <strong>boundary</strong> curve and any number of <strong>obstacles</strong> (walls,
-      columns, furniture). Curves are simplified into polylines, and their segments and corners are shared
-      by all analyses that use them.</p>
-    <p>Internally, the Environment works with integer coordinates, which keeps visibility and polygon
-      operations exact. <strong>Precision Scaling</strong> sets how many decimals are kept: <code>2</code>
-      means a model in metres is resolved to the centimetre.</p>
-    <p class="note">Draw plans flat on the XY plane, close the boundary, and keep obstacles inside it. Every
-      template exposes Precision Scaling as a slider labelled <em>Number of decimals to represent
-      geometry</em>. The first run of the medial axis installs the Python 3 engine and the
-      <code>pyvoronoi</code> package automatically, which needs an internet connection once.</p>
-
-    <h2 id="cite">Cite</h2>
-    <p>If you use Syntaktika in your work, please cite it:</p>
-    <pre class="cite">Vegas, G. Syntaktika: A Grasshopper plugin for advanced space syntax analysis,
+    <!-- cite -->
+    <section class="section section-tint" id="cite">
+      <div class="wrap wide split">
+        <div>
+          <p class="eyebrow">Research</p>
+          <h2 class="section-title">Cite Syntaktika</h2>
+          <p class="muted">If you use Syntaktika in your work, please cite it.</p>
+        </div>
+        <pre class="cite">Vegas, G. Syntaktika: A Grasshopper plugin for advanced space syntax analysis,
 visibility studies, and building geometry processing.
 https://github.com/gvegasol/Syntactics</pre>
+      </div>
+    </section>
+
+    <!-- final cta -->
+    <section class="cta-band">
+      <div class="wrap wide">
+        <h2>Analyse your first floor plan</h2>
+        <p>Open a template, swap in your own curves, and read the results in Grasshopper.</p>
+        <div class="cta-row">
+          <a class="btn btn-light" href="templates.html">Open the templates</a>
+          <a class="btn btn-ghost" href="components.html">Component reference</a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
-    <div class="wrap">Syntaktika · MIT License · © Gonzalo Vegas · <a href="https://github.com/gvegasol/Syntactics">Source on GitHub</a></div>
+    <div class="wrap wide">Syntaktika · MIT License · © Gonzalo Vegas · <a href="https://github.com/gvegasol/Syntactics">Source on GitHub</a></div>
   </footer>
 </body>
 </html>
