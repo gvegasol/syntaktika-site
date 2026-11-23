@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Components — Syntaktika</title>
+  <meta name="description" content="Reference of every Syntaktika Grasshopper component: description, inputs and outputs.">
+  <link rel="icon" href="assets/logo.png">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap wide">
+      <a class="brand" href="index.html"><img src="assets/logo.png" alt="">Syntaktika</a>
+      <nav class="nav">
+        <a href="index.html">Overview</a>
+        <a href="templates.html">Templates</a>
+        <a href="components.html" aria-current="page">Components</a>
+        <a href="https://github.com/gvegasol/Syntactics">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="wrap wide guide">
+    <aside class="guide-nav" aria-label="Components">
+      <button class="guide-toggle" type="button" aria-expanded="false" aria-controls="guide-panel">
+        <span class="guide-toggle-label">Contents</span>
+        <span class="guide-current" aria-hidden="true"></span>
+        <span class="guide-chevron" aria-hidden="true"></span>
+      </button>
+      <div class="guide-panel" id="guide-panel">
+        <p class="guide-label">Components</p>
+        <div id="side" class="side-cats"></div>
+      </div>
+    </aside>
+
+  <main class="guide-main">
+    <p class="crumbs"><a href="index.html">Syntaktika</a> / Components</p>
+    <h1>Components</h1>
+    <p class="lede">Every component in the Syntaktika tab, grouped as on the Grasshopper toolbar.</p>
+    <p class="muted">Generated from the plugin itself<span id="version"></span>. Click a component to see
+      its inputs and outputs.</p>
+
+    <input id="q" class="search" type="search" placeholder="Search components, inputs, outputs" aria-label="Search components">
+    <div class="toolbar"><span id="count" class="count"></span></div>
+
+    <div id="list"></div>
+  </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="wrap wide">Syntaktika · MIT License · © Gonzalo Vegas · <a href="https://github.com/gvegasol/Syntactics">Source on GitHub</a></div>
+  </footer>
+
+  <script src="data/components.js"></script>
+  <script src="assets/components.js"></script>
+</body>
+</html>

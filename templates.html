@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Templates — Syntaktika</title>
+  <meta name="description" content="The Grasshopper templates that ship with Syntaktika, explained one by one.">
+  <link rel="icon" href="assets/logo.png">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap wide">
+      <a class="brand" href="index.html"><img src="assets/logo.png" alt="">Syntaktika</a>
+      <nav class="nav">
+        <a href="index.html">Overview</a>
+        <a href="templates.html" aria-current="page">Templates</a>
+        <a href="components.html">Components</a>
+        <a href="https://github.com/gvegasol/Syntactics">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="wrap wide guide">
+    <aside class="guide-nav" aria-label="Templates">
+      <button class="guide-toggle" type="button" aria-expanded="false" aria-controls="guide-panel">
+        <span class="guide-toggle-label">Contents</span>
+        <span class="guide-current" aria-hidden="true"></span>
+        <span class="guide-chevron" aria-hidden="true"></span>
+      </button>
+      <div class="guide-progress" aria-hidden="true"></div>
+      <div class="guide-panel" id="guide-panel">
+        <p class="guide-label">Templates</p>
+        <ol class="guide-list">
+          <li><a href="#setup"><span class="n">00</span>Common setup</a></li>
+          <li><a href="#simple-isovist"><span class="n">01</span>Simple isovist</a></li>
+          <li><a href="#grid-isovist"><span class="n">02</span>Grid isovist</a></li>
+          <li><a href="#isovist-thresholds"><span class="n">04</span>Isovist thresholds</a></li>
+          <li><a href="#environment-thresholds"><span class="n">05</span>Environment thresholds</a></li>
+          <li><a href="#max-diameter"><span class="n">06</span>Maximal diameter</a></li>
+          <li><a href="#max-diameter-grid"><span class="n">07</span>Maximal diameter grid</a></li>
+          <li><a href="#medial-axis"><span class="n">11</span>Medial axis</a></li>
+        </ol>
+      </div>
+    </aside>
+
+  <main class="guide-main" id="guide-start">
+    <p class="crumbs"><a href="index.html">Syntaktika</a> / Templates</p>
+    <h1>Templates</h1>
+    <p class="lede">Small, working Grasshopper definitions, each showing one analysis on the same example plan.</p>
+    <p class="guide-meta"><span>7 templates</span><span id="read-time"></span></p>
+    <p>Open them from the <a href="components.html#templates">Templates</a>
+          component: right-click it and choose a file. The files are also in
+          <code>Syntaktika/Templates</code> in the repository.</p>
+
+      <!-- ===================================================== setup -->
+      <section id="setup">
+        <p class="eyebrow">Before you start</p>
+        <h2>Common setup</h2>
+        <p>Every template starts the same way. Two curve parameters and a slider feed an
+          <strong>Environment</strong>, which every analysis then uses.</p>
+        <ul class="flow">
+          <li>Boundary</li>
+          <li>Obstacles</li>
+          <li><img src="assets/icons/environment.png" alt=""><a href="components.html#environment">Environment</a></li>
+        </ul>
+        <dl class="params">
+          <dt>Boundary</dt><dd>One closed curve: the outline of the plan.</dd>
+          <dt>Obstacles</dt><dd>Walls, columns and other elements inside the boundary. Open or closed curves.</dd>
+          <dt>Precision Scaling</dt><dd>Number of decimals kept by the integer geometry engine. Default <code>2</code>.</dd>
+        </dl>
+        <p>To analyse your own plan, right-click each curve parameter and choose
+          <em>Set one Curve</em> (boundary) or <em>Set Multiple Curves</em> (obstacles). In the drawings
+          below, dark lines are the input plan and coloured elements are what the template previews.</p>
+      </section>
+
+      <!-- ===================================================== 01 -->
+      <section id="simple-isovist">
+        <h2>Simple isovist</h2>
+        <p class="file">01_simple_isovist.gh</p>
+        <figure class="plan"><img src="assets/templates/01_simple_isovist.svg" alt="Isovist polygon from a single point" loading="lazy"><figcaption>The shaded polygon is everything visible from the origin point.</figcaption></figure>
+        <ul class="flow">
+          <li><img src="assets/icons/environment.png" alt=""><a href="components.html#environment">Environment</a></li>
+          <li><img src="assets/icons/isovist.png" alt=""><a href="components.html#isovist">Isovist</a></li>
+          <li><img src="assets/icons/deconstruct-isovist.png" alt=""><a href="components.html#deconstruct-isovist">Deconstruct Isovist</a></li>
+        </ul>
+        <p>An <strong>isovist</strong> is the region of space visible from one point. The template computes
+          the isovist of the <em>Origin</em> point and fills its boundary with a surface so it reads as a
+          polygon. <em>Deconstruct Isovist</em> gives its measures: area, perimeter, occlusivity (the total
+          length of occluding edges, where the view continues behind an obstacle) and compactness.</p>
+        <dl class="params">
+          <dt>Origin</dt><dd>The viewpoint. Move it to see the isovist update.</dd>
+        </dl>
+      </section>
+
+      <!-- ===================================================== 02 -->
+      <section id="grid-isovist">
+        <h2>Grid isovist</h2>
+        <p class="file">02_grid_isovist.gh</p>
+        <figure class="plan"><img src="assets/templates/02_grid_isovist.svg" alt="Grid coloured by isovist area" loading="lazy"><figcaption>Each cell is coloured by the area visible from it. Warm colours see more.</figcaption></figure>
+        <ul class="flow">
+          <li><img src="assets/icons/environment.png" alt=""><a href="components.html#environment">Environment</a></li>
+          <li><img src="assets/icons/gridmesh.png" alt=""><a href="components.html#gridmesh">GridMesh</a></li>
+          <li><img src="assets/icons/grid-isovist.png" alt=""><a href="components.html#grid-isovist">Grid Isovist</a></li>
+          <li><img src="assets/icons/mesh-gradient.png" alt=""><a href="components.html#mesh-gradient">Mesh Gradient</a></li>
+        </ul>
+        <p>Computing isovists everywhere turns a single measurement into a map. <em>GridMesh</em> fills the
+          plan with square cells, <em>Grid Isovist</em> computes an isovist from the centre of every cell,
+          and <em>Mesh Gradient</em> colours the grid by <em>Isovist Area</em>. Large, open areas
+          stand out against secluded corners.</p>
+        <dl class="params">
+          <dt>Cell Size</dt><dd>Grid resolution, default <code>50</code>. Smaller cells give a finer map; time grows with the number of cells.</dd>
+          <dt>Values</dt><dd>Try connecting <em>Isovist Perimeter</em>, <em>Occlusivity</em> or <em>Compactness</em> instead of area.</dd>
+          <dt>Gradient Index</dt><dd>Colour scheme: <code>0</code> Thermal, <code>1</code> Turbo (default), <code>2</code> Viridis, and more.</dd>
+        </dl>
+      </section>
+
+      <!-- ===================================================== 04 -->
+      <section id="isovist-thresholds">
+        <h2>Isovist thresholds</h2>
+        <p class="file">04_isovist_thresholds.gh</p>
+        <figure class="plan"><img src="assets/templates/04_isovist_thresholds.svg" alt="Isovist with its threshold lines" loading="lazy"><figcaption>Threshold lines (green) divide the isovist where views open into adjacent spaces.</figcaption></figure>
+        <ul class="flow">
+          <li><img src="assets/icons/isovist.png" alt=""><a href="components.html#isovist">Isovist</a></li>
+          <li><img src="assets/icons/threshold-isovist.png" alt=""><a href="components.html#threshold-isovist">Threshold Isovist</a></li>
+          <li><img src="assets/icons/deconstruct-threshold-isovist.png" alt=""><a href="components.html#deconstruct-threshold-isovist">Deconstruct Threshold Isovist</a></li>
+          <li><img src="assets/icons/deconstruct-threshold.png" alt=""><a href="components.html#deconstruct-threshold">Deconstruct Threshold</a></li>
+        </ul>
+        <p>Thresholds are a method new to Syntaktika. Where an isovist is cut by an obstacle, its boundary has
+          <em>occluding edges</em>: places where the view slips past a corner. Pairing occluding points on the
+          left and right gives <strong>threshold lines</strong> that divide the isovist into nested regions,
+          the partial views into the next space.</p>
+        <p>Each threshold has a <em>depth</em> (how deeply it is nested, starting at 1) and a <em>potency</em>
+          (how strongly it closes off what lies behind it). <em>Deconstruct Threshold Isovist</em> also reports
+          summary measures such as maximum visible depth, mean threshold depth and distributedness.</p>
+      </section>
+
+      <!-- ===================================================== 05 -->
+      <section id="environment-thresholds">
+        <h2>Environment thresholds</h2>
+        <p class="file">05_environment_thresholds.gh</p>
+        <figure class="plan"><img src="assets/templates/05_environment_thresholds.svg" alt="Environment threshold lines across the plan" loading="lazy"><figcaption>Thresholds found from many viewpoints. In Grasshopper, line weight shows how widely each one is seen.</figcaption></figure>
+        <ul class="flow">
+          <li><img src="assets/icons/gridmesh.png" alt=""><a href="components.html#gridmesh">GridMesh</a></li>
+          <li><img src="assets/icons/grid-isovist.png" alt=""><a href="components.html#grid-isovist">Grid Isovist</a></li>
+          <li><img src="assets/icons/grid-threshold-isovist.png" alt=""><a href="components.html#grid-threshold-isovist">Grid Threshold Isovist</a></li>
+          <li><img src="assets/icons/deconstruct-environment-threshold.png" alt=""><a href="components.html#deconstruct-environment-threshold">Deconstruct Environment Threshold</a></li>
+        </ul>
+        <p>One isovist's thresholds depend on where you stand. Computing thresholds from every cell of a
+          grid and matching the ones that repeat gives <strong>environment thresholds</strong>: the
+          thresholds of the plan itself. Each one records how many cells see it and the area of the plan
+          it is seen from. Together they map the plan's main spatial transitions.</p>
+        <p>The template draws the valid thresholds and remaps each one's <em>Validation Count</em> (the
+          number of cells that see it) to line width, so the most widely seen thresholds are drawn
+          heaviest.</p>
+        <dl class="params">
+          <dt>Min and Max widths</dt><dd>The line-width range, default <code>1</code>–<code>100</code>.</dd>
+          <dt>Cell Size</dt><dd>Default <code>50</code>. More cells mean more viewpoints, and thresholds are confirmed more reliably.</dd>
+        </dl>
+      </section>
+
+      <!-- ===================================================== 06 -->
+      <section id="max-diameter">
+        <h2>Maximal diameter</h2>
+        <p class="file">06_max_diameter.gh</p>
+        <figure class="plan"><img src="assets/templates/06_max_diameter.svg" alt="Isovist with its maximal diameter" loading="lazy"><figcaption>The longest line that fits inside the isovist.</figcaption></figure>
+        <ul class="flow">
+          <li><img src="assets/icons/isovist.png" alt=""><a href="components.html#isovist">Isovist</a></li>
+          <li><img src="assets/icons/maximal-diameter.png" alt=""><a href="components.html#maximal-diameter">Maximal Diameter</a></li>
+        </ul>
+        <p>The <strong>maximal diameter</strong> is the longest straight line between two corners of an
+          isovist. It gives the dominant direction of view from a point. <em>Maximal Diameter</em> also
+          returns the diameters from every corner, and with a tolerance it returns all diameters close to
+          the longest.</p>
+        <dl class="params">
+          <dt>Tolerance</dt><dd>Diameters whose length is within this value of the longest also count as maximal. Default <code>1</code>.</dd>
+        </dl>
+      </section>
+
+      <!-- ===================================================== 07 -->
+      <section id="max-diameter-grid">
+        <h2>Maximal diameter grid</h2>
+        <p class="file">07_max_diameter_grid.gh</p>
+        <figure class="plan"><img src="assets/templates/07_max_diameter_grid.svg" alt="Field of short lines showing maximal diameter direction" loading="lazy"><figcaption>A short line at each cell points along its maximal diameter, forming a field of view directions.</figcaption></figure>
+        <ul class="flow">
+          <li><img src="assets/icons/gridmesh.png" alt=""><a href="components.html#gridmesh">GridMesh</a></li>
+          <li><img src="assets/icons/grid-isovist.png" alt=""><a href="components.html#grid-isovist">Grid Isovist</a></li>
+          <li><img src="assets/icons/maximal-diameter.png" alt=""><a href="components.html#maximal-diameter">Maximal Diameter</a></li>
+          <li><img src="assets/icons/mesh-gradient.png" alt=""><a href="components.html#mesh-gradient">Mesh Gradient</a></li>
+        </ul>
+        <p>Template 06, repeated for every cell of a grid. Each cell's maximal diameter is scaled down
+          around the cell centre and drawn as a short line, which shows how the dominant view direction
+          changes across the plan. The diameter length can also colour the grid
+          (<em>Max Diameter Length Gradient</em>).</p>
+        <dl class="params">
+          <dt>Diameter Scaling Factor</dt><dd>Length of the drawn lines relative to the full diameter. Default <code>0.02</code>.</dd>
+          <dt>Line Width</dt><dd>Display width of the lines.</dd>
+        </dl>
+      </section>
+
+      <!-- ===================================================== 11 -->
+      <section id="medial-axis">
+        <h2>Medial axis</h2>
+        <p class="file">11_medial_axis.gh</p>
+        <figure class="plan"><img src="assets/templates/11_medial_axis.svg" alt="Medial axis of the plan" loading="lazy"><figcaption>The medial axis: the centre line of all free space in the plan.</figcaption></figure>
+        <ul class="flow">
+          <li><img src="assets/icons/environment.png" alt=""><a href="components.html#environment">Environment</a></li>
+          <li><img src="assets/icons/medial-axis.png" alt=""><a href="components.html#medial-axis">Medial Axis</a></li>
+          <li><img src="assets/icons/deconstruct-medial-axis-part.png" alt=""><a href="components.html#deconstruct-medial-axis-part">Deconstruct Medial Axis Part</a></li>
+        </ul>
+        <p>The <strong>medial axis</strong> is the set of points that are equally distant from two or more
+          walls. It is the skeleton of the plan's free space. <em>Medial Axis</em> builds it from the
+          Environment's segments, using a segment Voronoi diagram that it computes internally. The result
+          is a graph of <em>parts</em> (lines or parabolas) and <em>points</em> (junctions).</p>
+        <p>Each part is classified by the pair of elements that generates it: <em>Line–Line</em>,
+          <em>Convex–Line</em>, <em>Convex–Convex</em> or <em>Concave</em>. <em>Deconstruct Medial Axis
+          Part</em> returns each part's ID, geometry, generating cells, category, region and chords.</p>
+        <p class="note"><strong>First run:</strong> Medial Axis sets up the Python 3 engine and
+          <code>pyvoronoi</code> automatically. This needs an internet connection once, and the component
+          recomputes when setup is done.</p>
+        <dl class="params">
+          <dt>Condense Concave Parts</dt><dd>Optional. Merges the parts generated around concave corners.</dd>
+        </dl>
+      </section>
+
+      <p class="back-top"><a href="#guide-start">Back to top ↑</a></p>
+  </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="wrap wide">Syntaktika · MIT License · © Gonzalo Vegas · <a href="https://github.com/gvegasol/Syntactics">Source on GitHub</a></div>
+  </footer>
+
+  <script src="assets/templates.js"></script>
+</body>
+</html>

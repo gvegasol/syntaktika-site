@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Syntaktika — Spatial analysis for Grasshopper</title>
+  <meta name="description" content="Syntaktika is a Grasshopper plugin for the spatial analysis of buildings: isovists, thresholds and the medial axis.">
+  <link rel="icon" href="assets/logo.png">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html"><img src="assets/logo.png" alt="">Syntaktika</a>
+      <nav class="nav">
+        <a href="index.html" aria-current="page">Overview</a>
+        <a href="templates.html">Templates</a>
+        <a href="components.html">Components</a>
+        <a href="https://github.com/gvegasol/Syntactics">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <p class="lede">A Grasshopper plugin for the spatial analysis of floor plans, for Rhino 8.</p>
+    <p>Syntaktika brings established Space Syntax methods, such as isovists, together with new ones:
+      isovist thresholds and the medial axis. Almost every analysis starts
+      from an <a href="#environment">Environment</a>, the boundary and obstacles of a plan, and the methods
+      build on each other.</p>
+
+
+    <h2>Isovist analysis</h2>
+    <figure><img src="assets/img/isovist_path_th.gif" alt="An isovist and its thresholds moving along a path" loading="lazy"></figure>
+    <p>Compute the visibility polygon of any point, or of every cell of a grid, and measure its area,
+      perimeter, occlusivity and compactness. <em>Thresholds</em> partition an isovist according to how its
+      occluding edges relate to each other.</p>
+
+
+    <h2>Medial axis</h2>
+    <figure><img src="assets/img/MA_parts.png" alt="Medial axis parts by category" loading="lazy"></figure>
+    <p>Reduce a plan to its medial axis: a graph-like skeleton that keeps the essential geometry, describes
+      circulation, and classifies each part as Line–Line, Convex–Line, Convex–Convex or Concave.</p>
+
+    <h2 id="install">Get started</h2>
+    <ol>
+      <li><strong>Install.</strong> In Rhino 8, run <code>PackageManager</code>, search for
+        <em>Syntaktika</em> and click Install. Restart Rhino.</li>
+      <li><strong>Open a template.</strong> In Grasshopper, place the <em>Templates</em> component
+        (Syntaktika › General), right-click it and choose a definition. Each template is a small, working
+        example of one analysis. See <a href="templates.html">Templates</a>.</li>
+      <li><strong>Use your own plan.</strong> Replace the <em>Boundary</em> and <em>Obstacles</em> curves
+        with your geometry: right-click the curve parameter and choose <em>Set one Curve</em> or
+        <em>Set Multiple Curves</em>.</li>
+    </ol>
+
+    <h2 id="environment">The Environment</h2>
+    <p>Almost every analysis takes an <a href="components.html#environment">Environment</a>. It is built
+      from a closed <strong>boundary</strong> curve and any number of <strong>obstacles</strong> (walls,
+      columns, furniture). Curves are simplified into polylines, and their segments and corners are shared
+      by all analyses that use them.</p>
+    <p>Internally, the Environment works with integer coordinates, which keeps visibility and polygon
+      operations exact. <strong>Precision Scaling</strong> sets how many decimals are kept: <code>2</code>
+      means a model in metres is resolved to the centimetre.</p>
+    <p class="note">Draw plans flat on the XY plane, close the boundary, and keep obstacles inside it. Every
+      template exposes Precision Scaling as a slider labelled <em>Number of decimals to represent
+      geometry</em>. The first run of the medial axis installs the Python 3 engine and the
+      <code>pyvoronoi</code> package automatically, which needs an internet connection once.</p>
+
+    <h2 id="cite">Cite</h2>
+    <p>If you use Syntaktika in your work, please cite it:</p>
+    <pre class="cite">Vegas, G. Syntaktika: A Grasshopper plugin for advanced space syntax analysis,
+visibility studies, and building geometry processing.
+https://github.com/gvegasol/Syntactics</pre>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">Syntaktika · MIT License · © Gonzalo Vegas · <a href="https://github.com/gvegasol/Syntactics">Source on GitHub</a></div>
+  </footer>
+</body>
+</html>
