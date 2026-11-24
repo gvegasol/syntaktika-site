@@ -1,7 +1,8 @@
 /* Syntaktika documentation. One stylesheet, no build step. Ink on white with the rose accent from the logo. */
 
 :root {
-  --bg: #fff5f8;        /* page: light rose */
+  --bg: #ffffff;
+  --pink: #fff0f5;      /* alternate section background on the overview */
   --ink: #111111;
   --text: #2b2b2b;
   --muted: #5c5c5c;
@@ -35,7 +36,7 @@ body {
 }
 
 img { max-width: 100%; height: auto; display: block; }
-/* White image backgrounds take the page colour; the hero animation keeps its own colours. */
+/* White image backgrounds take the colour behind them; the hero animation keeps its own colours. */
 main img { mix-blend-mode: multiply; }
 main .hero-mark img { mix-blend-mode: normal; }
 
@@ -250,7 +251,7 @@ main.home { padding-bottom: 0; overflow-x: clip; }
 
 .section { padding: 40px 0; }
 @media (min-width: 900px) { .section { padding: 56px 0; } }
-.section-tint { background: var(--bg); }
+.section-tint { background: var(--pink); }
 .section .eyebrow { margin-top: 0; }
 .section-title { font-size: clamp(1.7rem, 3.4vw, 2.4rem); letter-spacing: -0.025em; font-weight: 700; line-height: 1.12; }
 .section-lede { color: var(--muted); font-size: 1.1rem; max-width: 40em; }
@@ -293,3 +294,14 @@ main.home { padding-bottom: 0; overflow-x: clip; }
 .py-steps li { margin-bottom: .4em; color: var(--muted); }
 .py-steps li::marker { color: var(--rose-ink); font-weight: 700; }
 .py-steps strong { color: var(--ink); }
+
+/* ---------- overview: everything centred ---------- */
+.home { text-align: center; }
+.home .split { grid-template-columns: minmax(0, 1fr); }
+.home .section-lede, .home .concepts { max-width: 46em; margin-left: auto; margin-right: auto; }
+.home .cards { text-align: center; }
+.home .card-media { margin-left: auto; margin-right: auto; }
+.home .cta-row { justify-content: center; }
+.home .deps dt { justify-content: center; }
+.home .py-steps { padding-left: 0; list-style-position: inside; }
+.home pre.cite { text-align: center; border-left: 0; }
