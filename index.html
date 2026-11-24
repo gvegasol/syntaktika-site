@@ -35,7 +35,7 @@
     <!-- intro -->
     <section class="intro">
       <div class="wrap">
-        <p class="lede">A toolkit bringing established and novel spatial analytics to Grasshopper. Isovists, grid-isovists, convex and axial maps, the Medial Axis Trasnsform, and more... </p>
+        <p class="lede">A toolkit bringing established and novel spatial analytics to Grasshopper. Isovists, thresholds, convex and axial maps, the Medial Axis Trasnsform, and more... </p>
         <div class="cta-row">
           <a class="btn btn-primary" href="#install">Install Syntaktika</a>
           <a class="btn btn-secondary" href="templates.html">Browse templates</a>
@@ -44,7 +44,7 @@
     </section>
 
     <!-- methods -->
-    <section class="section">
+    <section class="section section-tint">
       <div class="wrap wide">
         <p class="eyebrow">Methods</p>
         <h2 class="section-title">What can you analyse?</h2>
@@ -74,7 +74,7 @@
     </section>
 
     <!-- steps -->
-    <section class="section section-tint" id="install">
+    <section class="section" id="install">
       <div class="wrap wide">
         <p class="eyebrow">How it works</p>
         <h2 class="section-title">Get started in three steps</h2>
@@ -93,7 +93,7 @@
           </li>
           <li>
             <span class="step-n">03</span>
-            <h3>Use your own plan</h3>
+            <h3>Use your own floorplan</h3>
             <p>Replace the <em>Boundary</em> and <em>Obstacles</em> curves with your geometry: right-click
               the parameter and choose <em>Set one Curve</em> or <em>Set Multiple Curves</em>.</p>
           </li>
@@ -101,14 +101,15 @@
       </div>
     </section>
 
-    <!-- environment -->
-    <section class="section" id="environment">
+    <!-- core concepts -->
+    <section class="section section-tint" id="environment">
       <div class="wrap wide split">
         <div>
-          <p class="eyebrow">Core concept</p>
-          <h2 class="section-title">The Environment</h2>
+          <p class="eyebrow">Core concepts</p>
+          <h2 class="section-title">How Syntaktika works</h2>
         </div>
-        <div>
+        <div class="concepts">
+          <h3>The Environment</h3>
           <p>Almost every analysis takes an <a href="components.html#environment">Environment</a>. It is built
             from a closed <strong>boundary</strong> curve and any number of <strong>obstacles</strong> (walls,
             columns, furniture). Curves are simplified into polylines, and their segments and corners are shared
@@ -116,16 +117,56 @@
           <p>Internally, the Environment works with integer coordinates, which keeps visibility and polygon
             operations exact. <strong>Precision Scaling</strong> sets how many decimals are kept: <code>2</code>
             means a model in metres is resolved to the centimetre.</p>
-          <p class="callout">Draw plans flat on the XY plane, close the boundary, and keep obstacles inside it.
-            Every template exposes Precision Scaling as a slider labelled <em>Number of decimals to represent
-            geometry</em>. The first run of the medial axis installs the Python 3 engine and the
-            <code>pyvoronoi</code> package automatically, which needs an internet connection once.</p>
+
+          <h3 id="dependencies">Dependencies</h3>
+          <p>Syntaktika is written in C# and builds on a few open libraries. All of them ship with the plugin,
+            except <code>pyvoronoi</code>, which Rhino installs on first use.</p>
+          <dl class="deps">
+            <dt>RhinoCommon <span>Rhino 8 SDK</span></dt>
+            <dd>Every input and output is ordinary Rhino geometry: points, curves, polylines and meshes. RhinoCommon
+              provides these types, and the Grasshopper SDK provides the components themselves.</dd>
+
+            <dt>Clipper2 <span>polygon clipping</span></dt>
+            <dd>The Environment stores its boundary and obstacles as Clipper paths with 64-bit integer coordinates,
+              which is where the integer geometry comes from: coordinates are multiplied by Precision Scaling and
+              rounded. Clipper then computes unions, differences, areas and point-in-polygon tests exactly, for
+              example to build the free space of a plan and the isovist polygons.</dd>
+
+            <dt>QuikGraph <span>graphs</span></dt>
+            <dd>The .NET graph library, the maintained successor of QuickGraph. The medial axis, its parts and the
+              visibility and threshold maps are stored as QuikGraph graphs, and its algorithms, such as connected
+              components, walk them.</dd>
+
+            <dt>MSAGL <span>graph layout</span></dt>
+            <dd>Microsoft Automatic Graph Layout draws graphs as readable diagrams. Syntaktika uses its layered
+              (Sugiyama) layout to place the nodes and route the edges.</dd>
+
+            <dt>pyvoronoi <span>Python, medial axis</span></dt>
+            <dd>The medial axis comes from the Voronoi diagram of the plan's line segments, computed by
+              <code>pyvoronoi</code>, a Python wrapper of the Boost.Polygon segment Voronoi.</dd>
+          </dl>
+
+          <h3>How Python runs inside Syntaktika</h3>
+          <p>No separate Python installation is needed. The script that calls <code>pyvoronoi</code>
+            (<code>SegmentVoronoi.py</code>) is embedded in the plugin and runs on Rhino 8's own CPython 3 engine,
+            the one behind the Script Editor, through RhinoCode (<code>Rhino.Runtime.Code</code>):</p>
+          <ol class="py-steps">
+            <li><strong>Start the engine.</strong> If Python 3 is not running yet, Syntaktika starts it in the
+              background, without opening a window, and the component recomputes once it is ready.</li>
+            <li><strong>Install the package.</strong> The script's header, <code># r: pyvoronoi==1.2.4</code>, tells
+              Rhino to install the package with pip the first time, so the first run needs an internet connection.
+              Version 1.2.4 is pinned because it is the latest with prebuilt packages for Rhino 8's Python 3.9;
+              newer versions would need a C++ compiler.</li>
+            <li><strong>Solve.</strong> pyvoronoi works on integers, so segment endpoints are multiplied by Precision
+              Scaling and rounded. The script returns each Voronoi cell with its source segment and category, and
+              Syntaktika turns them back into Rhino polylines at the original scale.</li>
+          </ol>
         </div>
       </div>
     </section>
 
     <!-- cite -->
-    <section class="section section-tint" id="cite">
+    <section class="section" id="cite">
       <div class="wrap wide split">
         <div>
           <p class="eyebrow">Research</p>
@@ -134,7 +175,7 @@
         </div>
         <pre class="cite">Vegas, G. Syntaktika: A Grasshopper plugin for advanced space syntax analysis,
 visibility studies, and building geometry processing.
-https://github.com/gvegasol/Syntactics</pre>
+https://gonzalovegas.com/syntaktika/</pre>
       </div>
     </section>
 
@@ -152,7 +193,7 @@ https://github.com/gvegasol/Syntactics</pre>
   </main>
 
   <footer class="site-footer">
-    <div class="wrap wide">Syntaktika · MIT License · © Gonzalo Vegas · <a href="https://github.com/gvegasol/Syntactics">Source on GitHub</a></div>
+    <div class="wrap wide">Syntaktika · MIT License · © Gonzalo Vegas</div>
   </footer>
 </body>
 </html>
