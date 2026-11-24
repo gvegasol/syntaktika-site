@@ -296,8 +296,11 @@ main.home { padding-bottom: 0; overflow-x: clip; }
 
 /* ---------- overview: section titles and ledes centred, everything else left-aligned ---------- */
 .home .section-title, .home .section-lede, .home .split .muted { text-align: center; }
+/* Cite keeps its original layout: title and note in a left column, the citation beside them, all left-aligned. */
+.home #cite .section-title, .home #cite .muted { text-align: left; }
 .home .section-lede { margin-left: auto; margin-right: auto; }
 .home .split { grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 900px) { .home #cite .split { grid-template-columns: 1fr 1.6fr; } }
 .home .concepts { max-width: 46em; margin-left: auto; margin-right: auto; }
 
 /* ---------- get started: placeholder animations, one per step (6 s loops) ---------- */
