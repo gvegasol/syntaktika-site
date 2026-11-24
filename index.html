@@ -66,6 +66,19 @@
               Concave.</p>
             <a class="more" href="templates.html#medial-axis">See the medial axis template</a>
           </article>
+          <article class="card">
+            <div class="card-media"><img src="assets/img/partition.svg" alt="A floor plan divided into convex parts" loading="lazy"></div>
+            <h3>Building Partitions</h3>
+            <p>Divide a plan into convex spaces, the units of space syntax, and read how they connect. Methods
+              from the field of shape recognition describe and compare the parts, so a plan can be broken down
+              into the shapes it is made of.</p>
+          </article>
+          <article class="card">
+            <div class="card-media"><img src="assets/img/agents.gif" alt="Several agents moving through a floor plan, steered by what they can see" loading="lazy"></div>
+            <h3>Navigation Agents</h3>
+            <p>Release visibility-based agents into a floorplan. Each agent looks around, picks where to go from
+              its isovist, and moves on, so their paths show how a layout invites or discourages movement.</p>
+          </article>
         </div>
       </div>
     </section>
@@ -76,20 +89,61 @@
         <h2 class="section-title">Get started in three steps</h2>
         <ol class="steps">
           <li>
-            <span class="step-n">01</span>
-            <h3>Install</h3>
+            <div class="step-media" aria-hidden="true">
+              <svg class="anim anim-install" viewBox="0 0 320 200">
+                <rect class="win" x="30" y="24" width="260" height="152"/>
+                <line class="win" x1="30" y1="46" x2="290" y2="46"/>
+                <text x="40" y="40">Package Manager</text>
+                <rect class="field" x="44" y="60" width="232" height="26"/>
+                <text class="typed" x="54" y="78">Syntaktika</text>
+                <rect class="btn-shape" x="44" y="100" width="88" height="26"/>
+                <text class="btn-text" x="62" y="118">Install</text>
+                <rect class="bar-bg" x="44" y="144" width="232" height="8"/>
+                <rect class="bar" x="44" y="144" width="232" height="8"/>
+                <path class="tick" d="M244 108 l8 8 l16 -18"/>
+              </svg>
+            </div>
+            <h3><span class="step-n">01</span> Install</h3>
             <p>In Rhino 8, run <code>PackageManager</code>, search for <em>Syntaktika</em> and click Install.
               Restart Rhino.</p>
           </li>
           <li>
-            <span class="step-n">02</span>
-            <h3>Open a template</h3>
+            <div class="step-media" aria-hidden="true">
+              <svg class="anim anim-template" viewBox="0 0 320 200">
+                <rect class="comp" x="40" y="70" width="84" height="40"/>
+                <text x="52" y="95">Templates</text>
+                <g class="menu">
+                  <rect class="win" x="132" y="58" width="150" height="84"/>
+                  <rect class="pick" x="132" y="86" width="150" height="28"/>
+                  <text x="144" y="78">01 Simple isovist</text>
+                  <text x="144" y="105">02 Grid isovist</text>
+                  <text x="144" y="132">11 Medial axis</text>
+                </g>
+                <path class="cursor" d="M0 0 l0 16 l4 -4 l4 8 l3 -1 l-4 -8 l6 0 z"/>
+                <g class="graph">
+                  <path class="wire" d="M96 168 C120 168 120 150 144 150 M96 168 C120 168 120 186 144 186 M204 150 C224 150 224 168 244 168 M204 186 C224 186 224 168 244 168"/>
+                  <rect class="comp" x="40" y="156" width="56" height="24"/>
+                  <rect class="comp" x="144" y="140" width="60" height="20"/>
+                  <rect class="comp" x="144" y="176" width="60" height="20"/>
+                  <rect class="comp" x="244" y="156" width="40" height="24"/>
+                </g>
+              </svg>
+            </div>
+            <h3><span class="step-n">02</span> Open a template</h3>
             <p>Place the <em>Templates</em> component (Syntaktika › General), right-click it and choose a
               definition. See <a href="templates.html">Templates</a>.</p>
           </li>
           <li>
-            <span class="step-n">03</span>
-            <h3>Use your own floorplan</h3>
+            <div class="step-media" aria-hidden="true">
+              <svg class="anim anim-plan" viewBox="0 0 320 200">
+                <polygon class="isovist" points="150,120 40,30 40,170 92,170 92,140 120,140 120,170 280,170 280,92 220,92 220,30 175,30 175,70 150,70"/>
+                <polygon class="boundary" pathLength="1" points="40,30 220,30 220,92 280,92 280,170 40,170"/>
+                <rect class="obstacle" x="92" y="140" width="28" height="30"/>
+                <rect class="obstacle" x="150" y="44" width="25" height="26"/>
+                <circle class="viewer" cx="150" cy="120" r="5"/>
+              </svg>
+            </div>
+            <h3><span class="step-n">03</span> Use your own floorplan</h3>
             <p>Replace the <em>Boundary</em> and <em>Obstacles</em> curves with your geometry: right-click
               the parameter and choose <em>Set one Curve</em> or <em>Set Multiple Curves</em>.</p>
           </li>
@@ -112,6 +166,15 @@
           <p>Internally, the Environment works with integer coordinates, which keeps visibility and polygon
             operations exact. <strong>Precision Scaling</strong> sets how many decimals are kept: <code>2</code>
             means a model in metres is resolved to the centimetre.</p>
+
+          <svg class="plans" viewBox="-2 -2 444 224" role="img" aria-label="Six floor plans drawn as polygons with holes: the plan interior is filled, and the obstacles are holes">
+              <path transform="translate(0 0)" d="M0,0 L120,0 L120,50 L60,50 L60,90 L0,90 Z M18,18 L23,18 L23,23 L18,23 Z M48,18 L53,18 L53,23 L48,23 Z M78,18 L83,18 L83,23 L78,23 Z M100,22 L105,22 L105,27 L100,27 Z M12,64 L44,64 L44,68 L12,68 Z M28,34 L32,34 L32,56 L28,56 Z"/>
+              <path transform="translate(160 0)" d="M0,0 L120,0 L120,90 L0,90 Z M38,28 L82,28 L82,62 L38,62 Z M14,14 L18,14 L18,18 L14,18 Z M102,14 L106,14 L106,18 L102,18 Z M14,72 L18,72 L18,76 L14,76 Z M102,72 L106,72 L106,76 L102,76 Z M58,6 L62,6 L62,22 L58,22 Z"/>
+              <path transform="translate(320 0)" d="M0,0 L120,0 L120,36 L80,36 L80,90 L40,90 L40,36 L0,36 Z M10,14 L36,14 L36,18 L10,18 Z M84,14 L110,14 L110,18 L84,18 Z M58,46 L62,46 L62,78 L58,78 Z M55,20 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 Z"/>
+              <path transform="translate(0 130)" d="M0,22 L22,0 L120,0 L120,90 L0,90 Z M34,40 a6,6 0 1,0 12,0 a6,6 0 1,0 -12,0 Z M74,40 a6,6 0 1,0 12,0 a6,6 0 1,0 -12,0 Z M34,66 a6,6 0 1,0 12,0 a6,6 0 1,0 -12,0 Z M74,66 a6,6 0 1,0 12,0 a6,6 0 1,0 -12,0 Z M96,10 L100,10 L100,40 L96,40 Z"/>
+              <path transform="translate(160 130)" d="M0,0 L120,0 L120,90 L82,90 L82,42 L38,42 L38,90 L0,90 Z M14,14 L19,14 L19,19 L14,19 Z M57,14 L62,14 L62,19 L57,19 Z M100,14 L105,14 L105,19 L100,19 Z M10,60 L30,60 L30,64 L10,64 Z M90,60 L110,60 L110,64 L90,64 Z"/>
+              <path transform="translate(320 130)" d="M40,0 L80,0 L80,30 L120,30 L120,60 L80,60 L80,90 L40,90 L40,60 L0,60 L0,30 L40,30 Z M54,39 L66,39 L66,51 L54,51 Z M46,8 L74,8 L74,12 L46,12 Z M46,78 L74,78 L74,82 L46,82 Z"/>
+          </svg>
 
           <h3 id="dependencies">Dependencies</h3>
           <p>Syntaktika is written in C# and builds on a few open libraries. All of them ship with the plugin,

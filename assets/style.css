@@ -270,7 +270,7 @@ main.home { padding-bottom: 0; overflow-x: clip; }
 
 .steps { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 28px; }
 @media (min-width: 760px) { .steps { grid-template-columns: repeat(3, 1fr); gap: 32px; } }
-.step-n { display: block; font: 700 .9rem/1 var(--mono); color: var(--rose-ink); margin-bottom: 10px; }
+.step-n { font: 700 .9em/1 var(--mono); color: var(--rose-ink); margin-right: .35em; }
 .steps h3 { font-size: 1.2rem; }
 .steps p { color: var(--muted); margin: 0; }
 
@@ -299,3 +299,57 @@ main.home { padding-bottom: 0; overflow-x: clip; }
 .home .section-lede { margin-left: auto; margin-right: auto; }
 .home .split { grid-template-columns: minmax(0, 1fr); }
 .home .concepts { max-width: 46em; margin-left: auto; margin-right: auto; }
+
+/* ---------- get started: placeholder animations, one per step (6 s loops) ---------- */
+.step-media { aspect-ratio: 16 / 10; margin-bottom: 14px; }
+.anim { width: 100%; height: 100%; display: block; overflow: visible; }
+.anim text { font: 600 11px var(--sans); fill: var(--ink); }
+.anim .win, .anim .field, .anim .comp { fill: #fff; stroke: var(--ink); stroke-width: 1.5; }
+.anim .comp { fill: var(--tint); }
+
+/* 01 install: type the name, press Install, fill the bar, tick */
+.anim-install .typed { clip-path: inset(0 100% 0 0); animation: a-type 6s steps(10) infinite; }
+.anim-install .btn-shape { fill: var(--rose); animation: a-press 6s infinite; transform-box: fill-box; transform-origin: center; }
+.anim-install .btn-text { fill: #fff; }
+.anim-install .bar-bg { fill: var(--tint); }
+.anim-install .bar { fill: var(--rose); transform-box: fill-box; transform-origin: left; transform: scaleX(0); animation: a-fill 6s infinite; }
+.anim-install .tick { fill: none; stroke: var(--rose-ink); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; opacity: 0; animation: a-tick 6s infinite; }
+@keyframes a-type { 0%, 5% { clip-path: inset(0 100% 0 0); } 25%, 100% { clip-path: inset(0 0 0 0); } }
+@keyframes a-press { 0%, 30% { transform: none; } 33% { transform: scale(.94); } 36%, 100% { transform: none; } }
+@keyframes a-fill { 0%, 36% { transform: scaleX(0); } 70%, 100% { transform: scaleX(1); } }
+@keyframes a-tick { 0%, 72% { opacity: 0; } 76%, 94% { opacity: 1; } 100% { opacity: 0; } }
+
+/* 02 template: cursor right-clicks the component, menu opens, an item is picked, the definition appears */
+.anim-template .cursor { fill: var(--ink); stroke: #fff; stroke-width: 1; animation: a-cursor 6s infinite; }
+.anim-template .menu { opacity: 0; animation: a-menu 6s infinite; }
+.anim-template .pick { fill: var(--rose-soft); stroke: none; opacity: 0; animation: a-pick 6s infinite; }
+.anim-template .graph { opacity: 0; animation: a-graph 6s infinite; }
+.anim-template .wire { fill: none; stroke: var(--faint); stroke-width: 1.5; }
+@keyframes a-cursor { 0% { transform: translate(250px, 30px); } 20%, 30% { transform: translate(100px, 92px); } 48%, 60% { transform: translate(200px, 100px); } 75%, 100% { transform: translate(250px, 30px); } }
+@keyframes a-menu { 0%, 30% { opacity: 0; } 34%, 62% { opacity: 1; } 66%, 100% { opacity: 0; } }
+@keyframes a-pick { 0%, 48% { opacity: 0; } 50%, 62% { opacity: 1; } 66%, 100% { opacity: 0; } }
+@keyframes a-graph { 0%, 64% { opacity: 0; } 70%, 94% { opacity: 1; } 100% { opacity: 0; } }
+
+/* 03 floorplan: draw the boundary, drop in the obstacles, then the isovist appears */
+.anim-plan .boundary { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: a-draw 6s infinite; }
+.anim-plan .obstacle { fill: var(--ink); opacity: 0; animation: a-obst 6s infinite; }
+.anim-plan .obstacle + .obstacle { animation-delay: .3s; }
+.anim-plan .isovist { fill: var(--rose); fill-opacity: .28; opacity: 0; animation: a-iso 6s infinite; }
+.anim-plan .viewer { fill: var(--rose-ink); opacity: 0; animation: a-iso 6s infinite; }
+@keyframes a-draw { 0% { stroke-dashoffset: 1; opacity: 1; } 35%, 92% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes a-obst { 0%, 38% { opacity: 0; } 45%, 92% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes a-iso { 0%, 55% { opacity: 0; } 65%, 92% { opacity: 1; } 100% { opacity: 0; } }
+
+/* Without motion, show each animation's end state. */
+@media (prefers-reduced-motion: reduce) {
+  .anim * { animation: none !important; }
+  .anim-install .typed { clip-path: none; }
+  .anim-install .bar { transform: none; }
+  .anim-install .tick, .anim-template .graph, .anim-plan .obstacle, .anim-plan .isovist, .anim-plan .viewer { opacity: 1; }
+  .anim-plan .boundary { stroke-dashoffset: 0; }
+  .anim-template .cursor { transform: translate(250px, 30px); }
+}
+
+/* environment: floor plans as polygons with holes; the holes (obstacles) show the section background */
+.plans { display: block; width: 100%; max-width: 560px; height: auto; margin: 1.4em auto .4em; }
+.plans path { fill: var(--rose); fill-rule: evenodd; }
