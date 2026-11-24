@@ -295,13 +295,8 @@ main.home { padding-bottom: 0; overflow-x: clip; }
 .py-steps li::marker { color: var(--rose-ink); font-weight: 700; }
 .py-steps strong { color: var(--ink); }
 
-/* ---------- overview: everything centred ---------- */
-.home { text-align: center; }
+/* ---------- overview: section titles and ledes centred, everything else left-aligned ---------- */
+.home .section-title, .home .section-lede, .home .split .muted { text-align: center; }
+.home .section-lede { margin-left: auto; margin-right: auto; }
 .home .split { grid-template-columns: minmax(0, 1fr); }
-.home .section-lede, .home .concepts { max-width: 46em; margin-left: auto; margin-right: auto; }
-.home .cards { text-align: center; }
-.home .card-media { margin-left: auto; margin-right: auto; }
-.home .cta-row { justify-content: center; }
-.home .deps dt { justify-content: center; }
-.home .py-steps { padding-left: 0; list-style-position: inside; }
-.home pre.cite { text-align: center; border-left: 0; }
+.home .concepts { max-width: 46em; margin-left: auto; margin-right: auto; }
