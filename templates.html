@@ -48,9 +48,8 @@
   <main class="guide-main" id="guide-start">
     <p class="crumbs"><a href="index.html">Syntaktika</a> / Templates</p>
     <h1>Templates</h1>
-    <p class="lede">Small, working Grasshopper definitions, each showing one analysis on the same example plan.</p>
-    <p>Open them from the <a href="components.html#templates">Templates</a> component: right-click it and choose a file.</p>
-    <p class="guide-meta"><span>9 templates</span><span id="read-time"></span></p>
+    <p class="lede">Small, working Grasshopper definitions, each showing one analysis on the same example plan. </p>
+    <p class="lede">Open them from the <a href="components.html#templates">Templates</a> component: right-click it and choose a file.</p>
 
 
       <!-- ===================================================== setup -->
@@ -60,8 +59,7 @@
         <p>Every template starts the same way. Two curve parameters and a slider feed an
           <strong>Environment</strong>, which every analysis then uses.</p>
         <ul class="flow">
-          <li>Boundary</li>
-          <li>Obstacles</li>
+          <li>Boundary, Obstacles</li>
           <li><img src="assets/icons/environment.png" alt=""><a href="components.html#environment">Environment</a></li>
         </ul>
         <dl class="params">
@@ -78,7 +76,7 @@
       <section id="simple-isovist">
         <h2>Simple isovist</h2>
         <p class="file">01_simple_isovist.gh</p>
-        <figure class="plan"><img src="assets/templates/01_simple_isovist.svg" alt="Isovist polygon from a single point" loading="lazy"><figcaption>The shaded polygon is everything visible from the origin point.</figcaption></figure>
+        <figure class="plan" data-definition="assets/templates/01_simple_isovist_definition.png"><img src="assets/templates/01_simple_isovist.svg" alt="Isovist polygon from a single point" loading="lazy"></figure>
         <ul class="flow">
           <li><img src="assets/icons/environment.png" alt=""><a href="components.html#environment">Environment</a></li>
           <li><img src="assets/icons/isovist.png" alt=""><a href="components.html#isovist">Isovist</a></li>
@@ -88,6 +86,9 @@
           the isovist of the <em>Origin</em> point and fills its boundary with a surface so it reads as a
           polygon. <em>Deconstruct Isovist</em> gives its measures: area, perimeter, occlusivity (the total
           length of occluding edges, where the view continues behind an obstacle) and compactness.</p>
+        <p>The isovist and its measures as a description of space were introduced by Michael Benedikt in
+          <a href="https://doi.org/10.1068/b060047">To take hold of space: isovists and isovist fields</a>
+          (<em>Environment and Planning B</em>, 6(1), 47–65, 1979).</p>
         <dl class="params">
           <dt>Origin</dt><dd>The viewpoint. Move it to see the isovist update.</dd>
         </dl>
@@ -97,7 +98,7 @@
       <section id="grid-isovist">
         <h2>Grid isovist</h2>
         <p class="file">02_grid_isovist.gh</p>
-        <figure class="plan"><img src="assets/templates/02_grid_isovist.svg" alt="Grid coloured by isovist area" loading="lazy"><figcaption>Each cell is coloured by the area visible from it. Warm colours see more.</figcaption></figure>
+        <figure class="plan" data-definition="assets/templates/02_grid_isovist_definition.png"><img src="assets/templates/02_grid_isovist.svg" alt="Grid coloured by isovist area" loading="lazy"></figure>
         <ul class="flow">
           <li><img src="assets/icons/environment.png" alt=""><a href="components.html#environment">Environment</a></li>
           <li><img src="assets/icons/gridmesh.png" alt=""><a href="components.html#gridmesh">GridMesh</a></li>
@@ -119,7 +120,7 @@
       <section id="isovist-thresholds">
         <h2>Isovist thresholds</h2>
         <p class="file">04_isovist_thresholds.gh</p>
-        <figure class="plan"><img src="assets/templates/04_isovist_thresholds.svg" alt="Isovist with its threshold lines" loading="lazy"><figcaption>Threshold lines (green) divide the isovist where views open into adjacent spaces.</figcaption></figure>
+        <figure class="plan" data-definition="assets/templates/04_isovist_thresholds_definition.png"><img src="assets/templates/04_isovist_thresholds.svg" alt="Isovist with its threshold lines" loading="lazy"></figure>
         <ul class="flow">
           <li><img src="assets/icons/isovist.png" alt=""><a href="components.html#isovist">Isovist</a></li>
           <li><img src="assets/icons/threshold-isovist.png" alt=""><a href="components.html#threshold-isovist">Threshold Isovist</a></li>
@@ -139,7 +140,7 @@
       <section id="environment-thresholds">
         <h2>Environment thresholds</h2>
         <p class="file">05_environment_thresholds.gh</p>
-        <figure class="plan"><img src="assets/templates/05_environment_thresholds.svg" alt="Environment threshold lines across the plan" loading="lazy"><figcaption>Thresholds found from many viewpoints. In Grasshopper, line weight shows how widely each one is seen.</figcaption></figure>
+        <figure class="plan" data-definition="assets/templates/05_environment_thresholds_definition.png"><img src="assets/templates/05_environment_thresholds.svg" alt="Environment threshold lines across the plan" loading="lazy"></figure>
         <ul class="flow">
           <li><img src="assets/icons/gridmesh.png" alt=""><a href="components.html#gridmesh">GridMesh</a></li>
           <li><img src="assets/icons/grid-isovist.png" alt=""><a href="components.html#grid-isovist">Grid Isovist</a></li>
@@ -163,7 +164,7 @@
       <section id="max-diameter">
         <h2>Maximal diameter</h2>
         <p class="file">06_max_diameter.gh</p>
-        <figure class="plan"><img src="assets/templates/06_max_diameter.svg" alt="Isovist with its maximal diameter" loading="lazy"><figcaption>The longest line that fits inside the isovist.</figcaption></figure>
+        <figure class="plan" data-definition="assets/templates/06_max_diameter_definition.png"><img src="assets/templates/06_max_diameter.svg" alt="Isovist with its maximal diameter" loading="lazy"></figure>
         <ul class="flow">
           <li><img src="assets/icons/isovist.png" alt=""><a href="components.html#isovist">Isovist</a></li>
           <li><img src="assets/icons/maximal-diameter.png" alt=""><a href="components.html#maximal-diameter">Maximal Diameter</a></li>
@@ -181,7 +182,7 @@
       <section id="max-diameter-grid">
         <h2>Maximal diameter grid</h2>
         <p class="file">07_grid_max_diameter.gh</p>
-        <figure class="plan"><img src="assets/templates/07_grid_max_diameter.svg" alt="Field of short lines showing maximal diameter direction" loading="lazy"><figcaption>A short line at each cell points along its maximal diameter, forming a field of view directions.</figcaption></figure>
+        <figure class="plan" data-definition="assets/templates/07_grid_max_diameter_definition.png"><img src="assets/templates/07_grid_max_diameter.svg" alt="Field of short lines showing maximal diameter direction" loading="lazy"></figure>
         <ul class="flow">
           <li><img src="assets/icons/gridmesh.png" alt=""><a href="components.html#gridmesh">GridMesh</a></li>
           <li><img src="assets/icons/grid-isovist.png" alt=""><a href="components.html#grid-isovist">Grid Isovist</a></li>
@@ -203,7 +204,7 @@
       <section id="medial-axis">
         <h2>Medial axis</h2>
         <p class="file">11_medial_axis.gh</p>
-        <figure class="plan"><img src="assets/templates/11_medial_axis.svg" alt="Medial axis of the plan" loading="lazy"><figcaption>The medial axis: the centre line of all free space in the plan.</figcaption></figure>
+        <figure class="plan" data-definition="assets/templates/11_medial_axis_definition.png"><img src="assets/templates/11_medial_axis.svg" alt="Medial axis of the plan" loading="lazy"></figure>
         <ul class="flow">
           <li><img src="assets/icons/environment.png" alt=""><a href="components.html#environment">Environment</a></li>
           <li><img src="assets/icons/medial-axis.png" alt=""><a href="components.html#medial-axis">Medial Axis</a></li>
@@ -228,7 +229,7 @@
       <section id="axial-map">
         <h2>Axial map</h2>
         <p class="file">12_axial_map.gh</p>
-        <figure class="plan"><img src="assets/templates/12_axial_map.svg" alt="Axial lines crossing the plan" loading="lazy"><figcaption>The axial map: the fewest longest lines of sight that reach every part of the plan.</figcaption></figure>
+        <figure class="plan" data-definition="assets/templates/12_axial_map_definition.png"><img src="assets/templates/12_axial_map.svg" alt="Axial lines crossing the plan" loading="lazy"></figure>
         <ul class="flow">
           <li><img src="assets/icons/environment.png" alt=""><a href="components.html#environment">Environment</a></li>
           <li><img src="assets/icons/axial-map.png" alt=""><a href="components.html#axial-map">Axial Map</a></li>
@@ -251,7 +252,7 @@
       <section id="convex-map">
         <h2>Convex map</h2>
         <p class="file">12_convex_map.gh</p>
-        <figure class="plan"><img src="assets/templates/12_convex_map.svg" alt="The plan divided into convex regions" loading="lazy"><figcaption>The plan cut into convex regions along chords of its medial axis.</figcaption></figure>
+        <figure class="plan" data-definition="assets/templates/12_convex_map_definition.png"><img src="assets/templates/12_convex_map.svg" alt="The plan divided into convex regions" loading="lazy"></figure>
         <ul class="flow">
           <li><img src="assets/icons/environment.png" alt=""><a href="components.html#environment">Environment</a></li>
           <li><img src="assets/icons/medial-axis.png" alt=""><a href="components.html#medial-axis">Medial Axis</a></li>
@@ -285,5 +286,54 @@
   </footer>
 
   <script src="assets/templates.js"></script>
+  <script>
+    // Template figures: the drawing and the Grasshopper definition share one fixed frame, switched with
+    // < dots > below it. The definition loads the first time it is shown. Clicking the image expands it.
+    var box = document.createElement('div');
+    box.className = 'lightbox'; box.hidden = true;
+    box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.setAttribute('aria-label', 'Expanded image');
+    box.innerHTML = '<button type="button" class="lightbox-close" aria-label="Close">×</button><img alt="">';
+    document.body.appendChild(box);
+    var boxImg = box.querySelector('img'), boxClose = box.querySelector('.lightbox-close'), lastFocus = null;
+    function expand(img) {
+      boxImg.src = img.currentSrc || img.src; boxImg.alt = img.alt;
+      lastFocus = document.activeElement; box.hidden = false; document.body.style.overflow = 'hidden'; boxClose.focus();
+    }
+    function collapse() {
+      if (box.hidden) return;
+      box.hidden = true; document.body.style.overflow = ''; if (lastFocus) lastFocus.focus();
+    }
+    box.addEventListener('click', collapse);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') collapse(); });
+    document.querySelectorAll('figure.plan[data-definition]').forEach(function (fig) {
+      var drawing = fig.querySelector('img'), cap = fig.querySelector('figcaption');
+      if (!drawing) return;
+      var stage = document.createElement('div');
+      stage.className = 'plan-stage';
+      var def = document.createElement('img');
+      def.alt = 'The template in Grasshopper'; def.hidden = true;
+      drawing.parentNode.insertBefore(stage, drawing);
+      stage.appendChild(drawing); stage.appendChild(def);
+      var views = [drawing, def], labels = ['Drawing', 'Grasshopper definition'], i = 0, dots = [];
+      function show(n) {
+        i = (n + 2) % 2;
+        if (i === 1 && !def.getAttribute('src')) def.src = fig.dataset.definition;
+        views.forEach(function (v, k) { v.hidden = k !== i; dots[k].setAttribute('aria-current', k === i ? 'true' : 'false'); });
+      }
+      function btn(cls, label, text, onClick) {
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = cls; b.setAttribute('aria-label', label); b.textContent = text;
+        b.addEventListener('click', onClick); return b;
+      }
+      var nav = document.createElement('div');
+      nav.className = 'gallery-nav plan-nav';
+      nav.appendChild(btn('gallery-btn', 'Previous view', '‹', function () { show(i - 1); }));
+      labels.forEach(function (l, k) { var d = btn('gallery-dot', l, '', function () { show(k); }); dots.push(d); nav.appendChild(d); });
+      nav.appendChild(btn('gallery-btn', 'Next view', '›', function () { show(i + 1); }));
+      fig.insertBefore(nav, cap || null);
+      stage.addEventListener('click', function () { expand(views[i]); });
+      show(0);
+    });
+  </script>
 </body>
 </html>
