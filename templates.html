@@ -109,7 +109,7 @@
           and <em>Mesh Gradient</em> colours the grid by <em>Isovist Area</em>. Large, open areas
           stand out against secluded corners.</p>
         <dl class="params">
-          <dt>Cell Size</dt><dd>Grid resolution, in model units. Smaller cells give a finer map; time grows with the number of cells.</dd>
+          <dt>Cell Size</dt><dd>Grid resolution, default <code>0.3</code>. Smaller cells give a finer map; time grows with the number of cells.</dd>
           <dt>Values</dt><dd>Try connecting <em>Isovist Perimeter</em>, <em>Occlusivity</em> or <em>Compactness</em> instead of area.</dd>
           <dt>Gradient Index</dt><dd>Colour scheme: <code>0</code> Thermal, <code>1</code> Turbo (default), <code>2</code> Viridis, and more.</dd>
         </dl>
@@ -154,8 +154,8 @@
           number of cells that see it) to line width, so the most widely seen thresholds are drawn
           heaviest.</p>
         <dl class="params">
-          <dt>Min and Max widths</dt><dd>The range of line widths the validation counts are remapped to.</dd>
-          <dt>Cell Size</dt><dd>Smaller cells mean more viewpoints, and thresholds are confirmed more reliably.</dd>
+          <dt>Min and Max widths</dt><dd>The line-width range the validation counts are remapped to, default <code>0.14</code>–<code>1</code>.</dd>
+          <dt>Cell Size</dt><dd>Default <code>0.3</code>. Smaller cells mean more viewpoints, and thresholds are confirmed more reliably.</dd>
         </dl>
       </section>
 
@@ -194,7 +194,8 @@
           (<em>Max Diameter Length Gradient</em>).</p>
         <dl class="params">
           <dt>Diameter Scaling Factor</dt><dd>Length of the drawn lines relative to the full diameter. Default <code>0.02</code>.</dd>
-          <dt>Line Width</dt><dd>Display width of the lines.</dd>
+          <dt>Line Width</dt><dd>Display width of the lines. Default <code>0.02</code>.</dd>
+          <dt>Cell Size</dt><dd>Default <code>0.5</code>.</dd>
         </dl>
       </section>
 
@@ -242,6 +243,7 @@
           crosses), a sparser <em>Greedy Map</em>, and the full all-line map.</p>
         <dl class="params">
           <dt>Greedy Map</dt><dd>Connect it to the preview instead of <em>Axial Map</em> for a map with even fewer lines that stays connected.</dd>
+          <dt>Precision Scaling</dt><dd>Set to <code>3</code> in this template, one decimal more than the others.</dd>
         </dl>
       </section>
 
@@ -264,10 +266,11 @@
         <p>The <em>Map</em> output leaves out residual pieces, such as door openings as deep as the wall,
           and <em>Map Edges</em> link the centres of neighbouring regions.</p>
         <dl class="params">
-          <dt>Full Ligatures Last</dt><dd>Join along corner-to-wall chords before corner-to-corner bottlenecks.</dd>
-          <dt>Corners First</dt><dd>Join first along the chords near convex corners, at the ends of the medial axis.</dd>
-          <dt>Concurrency Test</dt><dd>Skip joins that compete with others of the same priority, instead of choosing between them arbitrarily.</dd>
-          <dt>Min Area, Threshold Width</dt><dd>Regions smaller or narrower than these are left out of the map. <code>0</code> keeps them all.</dd>
+          <dt>Full Ligatures Last</dt><dd>Join along corner-to-wall chords before corner-to-corner bottlenecks. Off by default.</dd>
+          <dt>Corners First</dt><dd>Join first along the chords near convex corners, at the ends of the medial axis. Off by default.</dd>
+          <dt>Concurrency Test</dt><dd>Skip joins that compete with others of the same priority, instead of choosing between them arbitrarily. On by default.</dd>
+          <dt>Tie Tolerance</dt><dd>Chords whose circle radii differ by at most this much have the same priority. Default <code>1</code>.</dd>
+          <dt>Min Area, Threshold Width</dt><dd>Inputs on the component: regions smaller or narrower than these are left out of the map. <code>0</code> keeps them all.</dd>
         </dl>
         <p class="note"><strong>First run:</strong> like the medial axis template, this one sets up
           <code>pyvoronoi</code> the first time and needs an internet connection once.</p>
