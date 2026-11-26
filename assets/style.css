@@ -63,8 +63,6 @@ code { font-family: var(--mono); font-size: .88em; background: var(--tint); padd
 .nav a { color: var(--muted); text-decoration: none; padding: 5px 12px; font-size: .95rem; transition: background-color .15s, color .15s; }
 .nav a:hover { color: var(--ink); background: var(--tint); }
 .nav a[aria-current="page"] { color: var(--rose-ink); background: var(--rose-soft); font-weight: 600; }
-.btn.header-cta { display: none; }
-@media (min-width: 720px) { .btn.header-cta { display: inline-flex; } }
 
 .site-footer { margin-top: 24px; padding: 14px 0 16px; background: var(--night); color: #9b97a6; font-size: .88rem; }
 .site-footer a { color: #e9e6ee; }
@@ -225,7 +223,7 @@ table.ptable td:last-child { color: var(--muted); white-space: pre-line; padding
 /* ---------- home ---------- */
 main.home { padding-bottom: 0; overflow-x: clip; }
 .home h1, .home h2, .home h3 { margin-top: 0; }
-.cards, .steps, .split { grid-template-columns: minmax(0, 1fr); }
+.cards, .split { grid-template-columns: minmax(0, 1fr); }
 .split > * { min-width: 0; }
 
 .hero { padding: 0; }
@@ -291,11 +289,21 @@ main.home { padding-bottom: 0; overflow-x: clip; }
 .more::after { content: " \2192"; color: var(--rose); }
 .more:hover { color: var(--rose-ink); }
 
-.steps { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 20px; }
-@media (min-width: 760px) { .steps { grid-template-columns: repeat(3, 1fr); gap: 32px; } }
+/* Get started: three step tabs over one large video */
+.stepper { margin-top: 8px; }
+.step-tabs { list-style: none; padding: 0; margin: 0 0 14px; display: grid; gap: 4px; }
+@media (min-width: 760px) { .step-tabs { grid-template-columns: repeat(3, 1fr); gap: 16px; } }
+.step-tab { position: relative; padding: 10px 14px 14px; cursor: pointer; border-top: 3px solid var(--line); transition: background-color .15s; }
+.step-tab::before { content: ""; position: absolute; top: -3px; left: 0; height: 3px; width: calc(var(--progress, 0) * 100%); background: var(--rose); }
+.step-tab:hover { background: var(--tint); }
+.step-tab[aria-current] { background: var(--rose-soft); }
+.step-tab h3 { font-size: 1.2rem; margin: 0 0 4px; }
+.step-tab h3 button { all: unset; cursor: pointer; }
+.step-tab h3 button:focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; }
+.step-tab p { color: var(--muted); margin: 0; font-size: .95rem; }
+.step-tab:not([aria-current]) p { display: none; }
+@media (min-width: 760px) { .step-tab:not([aria-current]) p { display: block; } }
 .step-n { font: 700 .9em/1 var(--mono); color: var(--rose-ink); margin-right: .35em; }
-.steps h3 { font-size: 1.2rem; }
-.steps p { color: var(--muted); margin: 0; }
 
 
 .split { display: grid; gap: 8px 56px; }
@@ -324,7 +332,8 @@ main.home { padding-bottom: 0; overflow-x: clip; }
 .home .concepts { max-width: 46em; margin-left: auto; margin-right: auto; }
 
 /* ---------- get started: placeholder animations, one per step (6 s loops) ---------- */
-.step-media { aspect-ratio: 16 / 10; margin-bottom: 6px; }
+.step-video { aspect-ratio: 1920 / 1140; border: 1px solid var(--line); background: #fff; overflow: hidden; }
+.step-video video { width: 100%; height: 100%; display: block; object-fit: contain; }
 .anim { width: 100%; height: 100%; display: block; overflow: visible; }
 .anim text { font: 600 11px var(--sans); fill: var(--ink); }
 .anim .win, .anim .field, .anim .comp { fill: #fff; stroke: var(--ink); stroke-width: 1.5; }

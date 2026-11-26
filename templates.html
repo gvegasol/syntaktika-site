@@ -39,6 +39,8 @@
           <li><a href="#max-diameter"><span class="n">05</span>Maximal diameter</a></li>
           <li><a href="#max-diameter-grid"><span class="n">06</span>Maximal diameter grid</a></li>
           <li><a href="#medial-axis"><span class="n">07</span>Medial axis</a></li>
+          <li><a href="#axial-map"><span class="n">08</span>Axial map</a></li>
+          <li><a href="#convex-map"><span class="n">09</span>Convex map</a></li>
         </ol>
       </div>
     </aside>
@@ -48,7 +50,7 @@
     <h1>Templates</h1>
     <p class="lede">Small, working Grasshopper definitions, each showing one analysis on the same example plan.</p>
     <p>Open them from the <a href="components.html#templates">Templates</a> component: right-click it and choose a file.</p>
-    <p class="guide-meta"><span>7 templates</span><span id="read-time"></span></p>
+    <p class="guide-meta"><span>9 templates</span><span id="read-time"></span></p>
 
 
       <!-- ===================================================== setup -->
@@ -107,7 +109,7 @@
           and <em>Mesh Gradient</em> colours the grid by <em>Isovist Area</em>. Large, open areas
           stand out against secluded corners.</p>
         <dl class="params">
-          <dt>Cell Size</dt><dd>Grid resolution, default <code>50</code>. Smaller cells give a finer map; time grows with the number of cells.</dd>
+          <dt>Cell Size</dt><dd>Grid resolution, in model units. Smaller cells give a finer map; time grows with the number of cells.</dd>
           <dt>Values</dt><dd>Try connecting <em>Isovist Perimeter</em>, <em>Occlusivity</em> or <em>Compactness</em> instead of area.</dd>
           <dt>Gradient Index</dt><dd>Colour scheme: <code>0</code> Thermal, <code>1</code> Turbo (default), <code>2</code> Viridis, and more.</dd>
         </dl>
@@ -142,7 +144,7 @@
           <li><img src="assets/icons/gridmesh.png" alt=""><a href="components.html#gridmesh">GridMesh</a></li>
           <li><img src="assets/icons/grid-isovist.png" alt=""><a href="components.html#grid-isovist">Grid Isovist</a></li>
           <li><img src="assets/icons/grid-threshold-isovist.png" alt=""><a href="components.html#grid-threshold-isovist">Grid Threshold Isovist</a></li>
-          <li><img src="assets/icons/deconstruct-environment-threshold.png" alt=""><a href="components.html#deconstruct-environment-threshold">Deconstruct Environment Threshold</a></li>
+          <li><img src="assets/icons/deconstruct-e-threshold.png" alt=""><a href="components.html#deconstruct-e-threshold">Deconstruct E-Threshold</a></li>
         </ul>
         <p>One isovist's thresholds depend on where you stand. Computing thresholds from every cell of a
           grid and matching the ones that repeat gives <strong>environment thresholds</strong>: the
@@ -152,8 +154,8 @@
           number of cells that see it) to line width, so the most widely seen thresholds are drawn
           heaviest.</p>
         <dl class="params">
-          <dt>Min and Max widths</dt><dd>The line-width range, default <code>1</code>–<code>100</code>.</dd>
-          <dt>Cell Size</dt><dd>Default <code>50</code>. More cells mean more viewpoints, and thresholds are confirmed more reliably.</dd>
+          <dt>Min and Max widths</dt><dd>The range of line widths the validation counts are remapped to.</dd>
+          <dt>Cell Size</dt><dd>Smaller cells mean more viewpoints, and thresholds are confirmed more reliably.</dd>
         </dl>
       </section>
 
@@ -178,8 +180,8 @@
       <!-- ===================================================== 06 -->
       <section id="max-diameter-grid">
         <h2>Maximal diameter grid</h2>
-        <p class="file">07_max_diameter_grid.gh</p>
-        <figure class="plan"><img src="assets/templates/07_max_diameter_grid.svg" alt="Field of short lines showing maximal diameter direction" loading="lazy"><figcaption>A short line at each cell points along its maximal diameter, forming a field of view directions.</figcaption></figure>
+        <p class="file">07_grid_max_diameter.gh</p>
+        <figure class="plan"><img src="assets/templates/07_grid_max_diameter.svg" alt="Field of short lines showing maximal diameter direction" loading="lazy"><figcaption>A short line at each cell points along its maximal diameter, forming a field of view directions.</figcaption></figure>
         <ul class="flow">
           <li><img src="assets/icons/gridmesh.png" alt=""><a href="components.html#gridmesh">GridMesh</a></li>
           <li><img src="assets/icons/grid-isovist.png" alt=""><a href="components.html#grid-isovist">Grid Isovist</a></li>
@@ -219,6 +221,56 @@
         <dl class="params">
           <dt>Condense Concave Parts</dt><dd>Optional. Merges the parts generated around concave corners.</dd>
         </dl>
+      </section>
+
+      <!-- ===================================================== 08 -->
+      <section id="axial-map">
+        <h2>Axial map</h2>
+        <p class="file">12_axial_map.gh</p>
+        <figure class="plan"><img src="assets/templates/12_axial_map.svg" alt="Axial lines crossing the plan" loading="lazy"><figcaption>The axial map: the fewest longest lines of sight that reach every part of the plan.</figcaption></figure>
+        <ul class="flow">
+          <li><img src="assets/icons/environment.png" alt=""><a href="components.html#environment">Environment</a></li>
+          <li><img src="assets/icons/axial-map.png" alt=""><a href="components.html#axial-map">Axial Map</a></li>
+        </ul>
+        <p>The <strong>axial map</strong> is the classic representation of space syntax: the fewest and
+          longest lines of sight that cross every space of a plan and connect them all. <em>Axial Map</em>
+          follows the algorithm of Turner, Penn and Hillier (2005). It first draws the <em>all-line map</em>,
+          every line joining two corners that see each other, extended past the corners it grazes. Then it
+          removes every line whose connections are already covered by another one, while keeping every
+          corner in view of some line (surveillance) and every loop around an obstacle closed.</p>
+        <p>Besides the map, the component returns each line's <em>Connectivity</em> (how many lines it
+          crosses), a sparser <em>Greedy Map</em>, and the full all-line map.</p>
+        <dl class="params">
+          <dt>Greedy Map</dt><dd>Connect it to the preview instead of <em>Axial Map</em> for a map with even fewer lines that stays connected.</dd>
+        </dl>
+      </section>
+
+      <!-- ===================================================== 09 -->
+      <section id="convex-map">
+        <h2>Convex map</h2>
+        <p class="file">12_convex_map.gh</p>
+        <figure class="plan"><img src="assets/templates/12_convex_map.svg" alt="The plan divided into convex regions" loading="lazy"><figcaption>The plan cut into convex regions along chords of its medial axis.</figcaption></figure>
+        <ul class="flow">
+          <li><img src="assets/icons/environment.png" alt=""><a href="components.html#environment">Environment</a></li>
+          <li><img src="assets/icons/medial-axis.png" alt=""><a href="components.html#medial-axis">Medial Axis</a></li>
+          <li><img src="assets/icons/convex-map-from-medial-axis.png" alt=""><a href="components.html#convex-map-from-medial-axis">Convex Map From Medial Axis</a></li>
+        </ul>
+        <p>A <strong>convex map</strong> divides a plan into convex spaces, regions where every point sees
+          every other, and connects the ones that touch. <em>Convex Map From Medial Axis</em> builds it
+          from the medial axis, after Miranda Carranza and Koch (2013). Every reflex corner of the plan
+          shapes part of the medial axis; the chords at the ends of those parts cut the plan into small
+          convex pieces. The pieces are then joined back across the chords, widest first, as long as the
+          joined region stays convex.</p>
+        <p>The <em>Map</em> output leaves out residual pieces, such as door openings as deep as the wall,
+          and <em>Map Edges</em> link the centres of neighbouring regions.</p>
+        <dl class="params">
+          <dt>Full Ligatures Last</dt><dd>Join along corner-to-wall chords before corner-to-corner bottlenecks.</dd>
+          <dt>Corners First</dt><dd>Join first along the chords near convex corners, at the ends of the medial axis.</dd>
+          <dt>Concurrency Test</dt><dd>Skip joins that compete with others of the same priority, instead of choosing between them arbitrarily.</dd>
+          <dt>Min Area, Threshold Width</dt><dd>Regions smaller or narrower than these are left out of the map. <code>0</code> keeps them all.</dd>
+        </dl>
+        <p class="note"><strong>First run:</strong> like the medial axis template, this one sets up
+          <code>pyvoronoi</code> the first time and needs an internet connection once.</p>
       </section>
 
       <p class="back-top"><a href="#guide-start">Back to top ↑</a></p>

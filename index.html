@@ -17,7 +17,6 @@
         <a href="templates.html">Templates</a>
         <a href="components.html">Components</a>
       </nav>
-      <a class="btn btn-primary btn-sm header-cta" href="#install">Get started</a>
     </div>
   </header>
 
@@ -35,7 +34,7 @@
     <!-- intro -->
     <section class="intro">
       <div class="wrap">
-        <p class="lede">A toolkit bringing established and novel spatial analytics to Grasshopper. Isovists, thresholds, partitions, the convex and axial maps, the Medial Axis Transform, and more... </p>
+        <p class="lede">A toolkit bringing established and novel spatial analytics to Grasshopper. Isovists, thresholds, partitions, the convex and axial maps, the Medial Axis Transform, and others. </p>
         <div class="cta-row">
           <a class="btn btn-primary" href="#install">Install Syntaktika</a>
           <a class="btn btn-secondary" href="templates.html">Browse templates</a>
@@ -59,7 +58,7 @@
           </article>
           <article class="card">
             <h3>Isovist Fields</h3>
-            <div class="card-media gallery" role="region" aria-roledescription="carousel" aria-label="Isovist fields images">
+            <div class="card-media gallery" data-autoplay="5000" role="region" aria-roledescription="carousel" aria-label="Isovist fields images">
               <img data-title="Area" src="assets/img/grid%20isovist%20snyder%20area.png" loading="lazy" alt="Isovist field of a floor plan coloured by area">
               <img data-title="Perimeter" data-src="assets/img/grid%20isovist%20snyder%20perimeter.png" hidden alt="Isovist field of a floor plan coloured by perimeter">
               <img data-title="Occlusivity" data-src="assets/img/grid%20isovist%20snyder%20occlusivity.png" hidden alt="Isovist field of a floor plan coloured by occlusivity">
@@ -72,7 +71,7 @@
           </article>
           <article class="card">
             <h3>Medial Axis Transform</h3>
-            <div class="card-media gallery" role="region" aria-roledescription="carousel" aria-label="Medial axis images">
+            <div class="card-media gallery" data-autoplay="5000" role="region" aria-roledescription="carousel" aria-label="Medial axis images">
               <img src="assets/img/ma_01.png" loading="lazy" alt="Medial axis parts of a floor plan, example 1 of 5">
               <img data-src="assets/img/ma_02.png" hidden alt="Medial axis parts of a floor plan, example 2 of 5">
               <img data-src="assets/img/ma_03.png" hidden alt="Medial axis parts of a floor plan, example 3 of 5">
@@ -101,67 +100,28 @@
     <section class="section" id="install">
       <div class="wrap wide">
         <h2 class="section-title">Get started in three steps</h2>
-        <ol class="steps">
-          <li>
-            <div class="step-media" aria-hidden="true">
-              <svg class="anim anim-install" viewBox="0 0 320 200">
-                <rect class="win" x="30" y="24" width="260" height="152"/>
-                <line class="win" x1="30" y1="46" x2="290" y2="46"/>
-                <text x="40" y="40">Package Manager</text>
-                <rect class="field" x="44" y="60" width="232" height="26"/>
-                <text class="typed" x="54" y="78">Syntaktika</text>
-                <rect class="btn-shape" x="44" y="100" width="88" height="26"/>
-                <text class="btn-text" x="62" y="118">Install</text>
-                <rect class="bar-bg" x="44" y="144" width="232" height="8"/>
-                <rect class="bar" x="44" y="144" width="232" height="8"/>
-                <path class="tick" d="M244 108 l8 8 l16 -18"/>
-              </svg>
-            </div>
-            <h3><span class="step-n">01</span> Install</h3>
-            <p>In Rhino 8, run <code>PackageManager</code>, search for <em>Syntaktika</em> and click Install.
-              Restart Rhino.</p>
-          </li>
-          <li>
-            <div class="step-media" aria-hidden="true">
-              <svg class="anim anim-template" viewBox="0 0 320 200">
-                <rect class="comp" x="40" y="70" width="84" height="40"/>
-                <text x="52" y="95">Templates</text>
-                <g class="menu">
-                  <rect class="win" x="132" y="58" width="150" height="84"/>
-                  <rect class="pick" x="132" y="86" width="150" height="28"/>
-                  <text x="144" y="78">01 Simple isovist</text>
-                  <text x="144" y="105">02 Grid isovist</text>
-                  <text x="144" y="132">07 Medial axis</text>
-                </g>
-                <path class="cursor" d="M0 0 l0 16 l4 -4 l4 8 l3 -1 l-4 -8 l6 0 z"/>
-                <g class="graph">
-                  <path class="wire" d="M96 168 C120 168 120 150 144 150 M96 168 C120 168 120 186 144 186 M204 150 C224 150 224 168 244 168 M204 186 C224 186 224 168 244 168"/>
-                  <rect class="comp" x="40" y="156" width="56" height="24"/>
-                  <rect class="comp" x="144" y="140" width="60" height="20"/>
-                  <rect class="comp" x="144" y="176" width="60" height="20"/>
-                  <rect class="comp" x="244" y="156" width="40" height="24"/>
-                </g>
-              </svg>
-            </div>
-            <h3><span class="step-n">02</span> Open a template</h3>
-            <p>Place the <em>Templates</em> component (Syntaktika › General), right-click it and choose a
-              definition. See <a href="templates.html">Templates</a>.</p>
-          </li>
-          <li>
-            <div class="step-media" aria-hidden="true">
-              <svg class="anim anim-plan" viewBox="0 0 320 200">
-                <polygon class="isovist" points="150,120 40,30 40,170 92,170 92,140 120,140 120,170 280,170 280,92 220,92 220,30 175,30 175,70 150,70"/>
-                <polygon class="boundary" pathLength="1" points="40,30 220,30 220,92 280,92 280,170 40,170"/>
-                <rect class="obstacle" x="92" y="140" width="28" height="30"/>
-                <rect class="obstacle" x="150" y="44" width="25" height="26"/>
-                <circle class="viewer" cx="150" cy="120" r="5"/>
-              </svg>
-            </div>
-            <h3><span class="step-n">03</span> Use your own floorplan</h3>
-            <p>Replace the <em>Boundary</em> and <em>Obstacles</em> curves with your geometry: right-click
-              the parameter and choose <em>Set one Curve</em> or <em>Set Multiple Curves</em>.</p>
-          </li>
-        </ol>
+        <div class="stepper">
+          <ol class="step-tabs">
+            <li class="step-tab" aria-current="step" data-video="assets/img/installation.mp4" data-label="Installing Syntaktika from the Rhino Package Manager">
+              <h3><button type="button"><span class="step-n">01</span> Install</button></h3>
+              <p>In Rhino 8, run <code>PackageManager</code>, search for <em>Syntaktika</em> and click Install.
+                Restart Rhino.</p>
+            </li>
+            <li class="step-tab" data-video="assets/img/opening_template_isovist.mp4" data-label="Opening a template from the Templates component">
+              <h3><button type="button"><span class="step-n">02</span> Open a template</button></h3>
+              <p>Place the <em>Templates</em> component (Syntaktika › General), right-click it and choose a
+                definition. See <a href="templates.html">Templates</a>.</p>
+            </li>
+            <li class="step-tab" data-video="assets/img/re-referencing_template.mp4" data-label="Replacing the template curves with your own floorplan">
+              <h3><button type="button"><span class="step-n">03</span> Use your own floorplan</button></h3>
+              <p>Replace the <em>Boundary</em> and <em>Obstacles</em> curves with your geometry: right-click
+                the parameter and choose <em>Set one Curve</em> or <em>Set Multiple Curves</em>.</p>
+            </li>
+          </ol>
+          <div class="step-video">
+            <video src="assets/img/installation.mp4" muted playsinline preload="metadata" aria-label="Installing Syntaktika from the Rhino Package Manager"></video>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -244,7 +204,7 @@
           <p class="muted">If you use Syntaktika in your work, please cite it.</p>
         </div>
         <pre class="cite">Vegas, G. (2026). Syntaktika: A Grasshopper plugin for advanced space syntax analysis,
-visibility studies, and building geometry processing (Version 0.4.0) [Computer software].
+visibility studies, and building geometry processing (Version 0.5.0) [Computer software].
 https://gonzalovegas.com/syntaktika-site/</pre>
       </div>
     </section>
@@ -255,6 +215,43 @@ https://gonzalovegas.com/syntaktika-site/</pre>
     <div class="wrap wide">Syntaktika · MIT License · © Gonzalo Vegas</div>
   </footer>
   <script>
+    // Get started: one video, three step tabs. Clicking a step plays its video from the start; when a
+    // video ends the next step plays. The active step shows the video's progress. Paused while off screen.
+    (function () {
+      var tabs = Array.prototype.slice.call(document.querySelectorAll('.step-tab'));
+      var video = document.querySelector('.step-video video');
+      if (!video || !tabs.length) return;
+      var current = 0, visible = false;
+      function play() { var p = video.play(); if (p && p.catch) p.catch(function () {}); }
+      function select(i, start) {
+        current = (i + tabs.length) % tabs.length;
+        tabs.forEach(function (t, k) {
+          if (k === current) t.setAttribute('aria-current', 'step'); else t.removeAttribute('aria-current');
+          t.style.setProperty('--progress', 0);
+        });
+        var t = tabs[current];
+        if (video.getAttribute('src') !== t.dataset.video) video.src = t.dataset.video;
+        video.setAttribute('aria-label', t.dataset.label);
+        if (start) { video.currentTime = 0; if (visible) play(); }
+      }
+      tabs.forEach(function (t, k) {
+        t.addEventListener('click', function (e) {
+          if (e.target.closest('a')) return;   // links in the step text keep working
+          select(k, true);
+        });
+      });
+      video.addEventListener('timeupdate', function () {
+        if (video.duration) tabs[current].style.setProperty('--progress', video.currentTime / video.duration);
+      });
+      video.addEventListener('ended', function () { select(current + 1, true); });
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          visible = entries[0].isIntersecting;
+          if (visible) play(); else video.pause();
+        }, { threshold: 0.3 }).observe(video);
+      } else { visible = true; play(); }
+    })();
+
     // Replay button: appears on hover over any card image that is a GIF, and restarts it from the
     // first frame. Changing the URL's #fragment makes the browser restart the animation without
     // downloading the file again.
@@ -279,7 +276,8 @@ https://gonzalovegas.com/syntaktika-site/</pre>
     });
 
     // Card galleries: a row of  < dots >  under the image, and the image's data-title as a caption.
-    // Images load only when first shown.
+    // Images load only when first shown. With data-autoplay="ms" the gallery advances on its own: paused
+    // while hovered, focused or off screen, restarted by manual navigation, off for reduced motion.
     document.querySelectorAll('.gallery').forEach(function (g) {
       var imgs = Array.prototype.slice.call(g.querySelectorAll('img'));
       if (imgs.length < 2) return;
@@ -318,6 +316,34 @@ https://gonzalovegas.com/syntaktika-site/</pre>
         if (e.key === 'ArrowRight') { show(i + 1); e.preventDefault(); }
       });
       show(0);
+
+      var delay = Number(g.dataset.autoplay) || 0;
+      var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (delay && !reduced) {
+        var card = g.closest('.card') || g, timer = null, held = false, onScreen = true;
+        function preload(n) {
+          var img = imgs[(n + imgs.length) % imgs.length];
+          if (img.dataset.src) { img.src = img.dataset.src; img.removeAttribute('data-src'); }
+        }
+        function schedule() {
+          clearTimeout(timer);
+          timer = setTimeout(function () {
+            if (!held && onScreen) { show(i + 1); preload(i + 1); }
+            schedule();
+          }, delay);
+        }
+        card.addEventListener('mouseenter', function () { held = true; });
+        card.addEventListener('mouseleave', function () { held = false; });
+        card.addEventListener('focusin', function () { held = true; });
+        card.addEventListener('focusout', function () { held = false; });
+        nav.addEventListener('click', schedule);
+        g.addEventListener('keydown', schedule);
+        if ('IntersectionObserver' in window) {
+          new IntersectionObserver(function (entries) { onScreen = entries[0].isIntersecting; }).observe(g);
+        }
+        preload(1);
+        schedule();
+      }
     });
   </script>
 </body>

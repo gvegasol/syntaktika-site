@@ -11,12 +11,13 @@
   const count = document.getElementById('count');
 
   // Toolbar order of the Syntaktika tab (the number prefix sets the order in Grasshopper).
-  const ORDER = ['1_General', '2_Isovist', '3_MedialAxis'];
-  const LABEL = { '1_General': 'General', '2_Isovist': 'Isovist', '3_MedialAxis': 'Medial Axis' };
+  const ORDER = ['1_General', '2_Isovist', '3_MedialAxis', '4_Partition'];
+  const LABEL = { '1_General': 'General', '2_Isovist': 'Isovist', '3_MedialAxis': 'Medial Axis', '4_Partition': 'Partition' };
   const BLURB = {
     '1_General': 'Environment, grids, colouring and utilities shared by every analysis.',
     '2_Isovist': 'Visibility polygons, their measures, thresholds and diameters.',
     '3_MedialAxis': 'The skeleton of free space: parts, points, circles and export.',
+    '4_Partition': 'Dividing a plan into regions: partitions, all-lines and s-lines, convex and axial maps.',
   };
 
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -126,9 +127,11 @@
 
   function openFromHash() {
     const id = decodeURIComponent(location.hash.slice(1));
-    if (!id || id.startsWith('cat-')) return;
+    if (!id) return;
     const el = document.getElementById(id);
-    if (el && el.tagName === 'DETAILS') { el.open = true; el.scrollIntoView({ block: 'start' }); }
+    if (!el) return;
+    if (el.tagName === 'DETAILS') el.open = true;
+    if (el.tagName === 'DETAILS' || id.startsWith('cat-')) el.scrollIntoView({ block: 'start' });
   }
 
   // Mobile: the sidebar collapses into a bar at the top with a toggle.
