@@ -35,7 +35,7 @@
     <!-- intro -->
     <section class="intro">
       <div class="wrap">
-        <p class="lede">A toolkit bringing established and novel spatial analytics to Grasshopper. Isovists, thresholds, convex and axial maps, the Medial Axis Trasnsform, and more... </p>
+        <p class="lede">A toolkit bringing established and novel spatial analytics to Grasshopper. Isovists, thresholds, partitions, the convex and axial maps, the Medial Axis Transform, and more... </p>
         <div class="cta-row">
           <a class="btn btn-primary" href="#install">Install Syntaktika</a>
           <a class="btn btn-secondary" href="templates.html">Browse templates</a>
@@ -46,36 +46,52 @@
     <!-- methods -->
     <section class="section section-tint">
       <div class="wrap wide">
-        <h2 class="section-title">Spatial Analysis Methods</h2>
         <div class="cards">
           <article class="card">
-            <div class="card-media"><img src="assets/img/isovist_path_th.gif" alt="An isovist and its thresholds moving along a path" loading="lazy"></div>
             <h3>Isovist Analysis</h3>
-            <p>Compute the visibility polygon of any point, or of every cell of a grid, and measure its area,
-              perimeter, occlusivity and compactness. <em>Thresholds</em> partition an isovist according to how
-              its occluding edges relate to each other.</p>
+            <div class="card-media gallery" role="region" aria-roledescription="carousel" aria-label="Isovist analysis images">
+              <img data-title="Isovist along a path" src="assets/img/isovist%20path%20tung.gif" loading="lazy" alt="An isovist moving along a path through a floor plan">
+              <img data-title="Isovist Occluding Edges" data-src="assets/img/isovist%20path%20details%20tung.gif" hidden alt="The occluding edges of an isovist changing as the viewer moves along a path">
+              <img data-title="Isovist Thresholds" data-src="assets/img/isovist%20path%20thresh%20inner%20area.gif" hidden alt="An isovist and its thresholds moving along a path">
+            </div>
+            <p>Compute the vector-based visibility polygon at any point inside the plan. Get precise occluding edges and calculate <em>Thresholds</em>, which partition an isovist into depth-based areas.</p>
             <a class="more" href="templates.html#simple-isovist">See the isovist templates</a>
           </article>
           <article class="card">
-            <div class="card-media"><img src="assets/img/MA_parts.png" alt="Medial axis parts by category" loading="lazy"></div>
+            <h3>Isovist Fields</h3>
+            <div class="card-media gallery" role="region" aria-roledescription="carousel" aria-label="Isovist fields images">
+              <img data-title="Area" src="assets/img/grid%20isovist%20snyder%20area.png" loading="lazy" alt="Isovist field of a floor plan coloured by area">
+              <img data-title="Perimeter" data-src="assets/img/grid%20isovist%20snyder%20perimeter.png" hidden alt="Isovist field of a floor plan coloured by perimeter">
+              <img data-title="Occlusivity" data-src="assets/img/grid%20isovist%20snyder%20occlusivity.png" hidden alt="Isovist field of a floor plan coloured by occlusivity">
+              <img data-title="Compactness" data-src="assets/img/grid%20isovist%20snyder%20compactness.png" hidden alt="Isovist field of a floor plan coloured by compactness">
+            </div>
+            <p>Compute an isovist from every cell of a grid and map its measures across the whole plan. Area,
+              perimeter, occlusivity and compactness become fields that show where a layout opens up, where it
+              closes down, and how visibility changes from room to room.</p>
+            <a class="more" href="templates.html#grid-isovist">See the grid isovist template</a>
+          </article>
+          <article class="card">
             <h3>Medial Axis Transform</h3>
+            <div class="card-media gallery" role="region" aria-roledescription="carousel" aria-label="Medial axis images">
+              <img src="assets/img/ma_01.png" loading="lazy" alt="Medial axis parts of a floor plan, example 1 of 5">
+              <img data-src="assets/img/ma_02.png" hidden alt="Medial axis parts of a floor plan, example 2 of 5">
+              <img data-src="assets/img/ma_03.png" hidden alt="Medial axis parts of a floor plan, example 3 of 5">
+              <img data-src="assets/img/ma_04.png" hidden alt="Medial axis parts of a floor plan, example 4 of 5">
+              <img data-src="assets/img/ma_05.png" hidden alt="Medial axis parts of a floor plan, example 5 of 5">
+            </div>
             <p>Reduce a plan to its medial axis: a graph-like skeleton that identifies the parts of a floorplan, 
               and classifies each part as Line–Line, Convex–Line, Convex–Convex or
               Concave.</p>
             <a class="more" href="templates.html#medial-axis">See the medial axis template</a>
           </article>
           <article class="card">
-            <div class="card-media"><img src="assets/img/partition.svg" alt="A floor plan divided into convex parts" loading="lazy"></div>
-            <h3>Building Partitions</h3>
-            <p>Divide a plan into convex spaces, the units of space syntax, and read how they connect. Methods
-              from the field of shape recognition describe and compare the parts, so a plan can be broken down
-              into the shapes it is made of.</p>
-          </article>
-          <article class="card">
-            <div class="card-media"><img src="assets/img/agents.gif" alt="Several agents moving through a floor plan, steered by what they can see" loading="lazy"></div>
-            <h3>Navigation Agents</h3>
-            <p>Release visibility-based agents into a floorplan. Each agent looks around, picks where to go from
-              its isovist, and moves on, so their paths show how a layout invites or discourages movement.</p>
+            <h3>Building Partitions (Coming Soon)</h3>
+            <div class="card-media gallery" role="region" aria-roledescription="carousel" aria-label="Building partition images">
+              <img src="assets/img/partitions1.gif" loading="lazy" alt="Candidate partition lines in a floor plan being filtered down to the final partition">
+              <img data-src="assets/img/partitions2.gif" hidden alt="Candidate partition lines in a second floor plan being filtered down to the final partition">
+            </div>
+            <p>Find the partition lines that split a plan into its parts and produce a graph of their permeability.
+               Inspired from methods of the shape recognition field.</p>
           </article>
         </div>
       </div>
@@ -115,7 +131,7 @@
                   <rect class="pick" x="132" y="86" width="150" height="28"/>
                   <text x="144" y="78">01 Simple isovist</text>
                   <text x="144" y="105">02 Grid isovist</text>
-                  <text x="144" y="132">11 Medial axis</text>
+                  <text x="144" y="132">07 Medial axis</text>
                 </g>
                 <path class="cursor" d="M0 0 l0 16 l4 -4 l4 8 l3 -1 l-4 -8 l6 0 z"/>
                 <g class="graph">
@@ -157,22 +173,21 @@
         </div>
         <div class="concepts">
           <h3>The Environment</h3>
-          <p>Almost every analysis takes an <a href="components.html#environment">Environment</a>. It is built
+          <p>Almost every analysis starts with an <a href="components.html#environment">Environment</a> component. It is built
             from a closed <strong>boundary</strong> curve and any number of <strong>obstacles</strong> (walls,
-            columns, furniture). Curves are simplified into polylines, and their segments and corners are shared
-            by all analyses that use them.</p>
+            columns, furniture). Curves need to be simplified into polylines.</p>
           <p>Internally, the Environment works with integer coordinates, which keeps visibility and polygon
             operations exact. <strong>Precision Scaling</strong> sets how many decimals are kept: <code>2</code>
             means a model in metres is resolved to the centimetre.</p>
 
-          <svg class="plans" viewBox="-2 -2 444 224" role="img" aria-label="Six floor plans drawn as polygons with holes: the plan interior is filled, and the obstacles are holes">
-              <path transform="translate(0 0)" d="M0,0 L120,0 L120,50 L60,50 L60,90 L0,90 Z M18,18 L23,18 L23,23 L18,23 Z M48,18 L53,18 L53,23 L48,23 Z M78,18 L83,18 L83,23 L78,23 Z M100,22 L105,22 L105,27 L100,27 Z M12,64 L44,64 L44,68 L12,68 Z M28,34 L32,34 L32,56 L28,56 Z"/>
-              <path transform="translate(160 0)" d="M0,0 L120,0 L120,90 L0,90 Z M38,28 L82,28 L82,62 L38,62 Z M14,14 L18,14 L18,18 L14,18 Z M102,14 L106,14 L106,18 L102,18 Z M14,72 L18,72 L18,76 L14,76 Z M102,72 L106,72 L106,76 L102,76 Z M58,6 L62,6 L62,22 L58,22 Z"/>
-              <path transform="translate(320 0)" d="M0,0 L120,0 L120,36 L80,36 L80,90 L40,90 L40,36 L0,36 Z M10,14 L36,14 L36,18 L10,18 Z M84,14 L110,14 L110,18 L84,18 Z M58,46 L62,46 L62,78 L58,78 Z M55,20 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 Z"/>
-              <path transform="translate(0 130)" d="M0,22 L22,0 L120,0 L120,90 L0,90 Z M34,40 a6,6 0 1,0 12,0 a6,6 0 1,0 -12,0 Z M74,40 a6,6 0 1,0 12,0 a6,6 0 1,0 -12,0 Z M34,66 a6,6 0 1,0 12,0 a6,6 0 1,0 -12,0 Z M74,66 a6,6 0 1,0 12,0 a6,6 0 1,0 -12,0 Z M96,10 L100,10 L100,40 L96,40 Z"/>
-              <path transform="translate(160 130)" d="M0,0 L120,0 L120,90 L82,90 L82,42 L38,42 L38,90 L0,90 Z M14,14 L19,14 L19,19 L14,19 Z M57,14 L62,14 L62,19 L57,19 Z M100,14 L105,14 L105,19 L100,19 Z M10,60 L30,60 L30,64 L10,64 Z M90,60 L110,60 L110,64 L90,64 Z"/>
-              <path transform="translate(320 130)" d="M40,0 L80,0 L80,30 L120,30 L120,60 L80,60 L80,90 L40,90 L40,60 L0,60 L0,30 L40,30 Z M54,39 L66,39 L66,51 L54,51 Z M46,8 L74,8 L74,12 L46,12 Z M46,78 L74,78 L74,82 L46,82 Z"/>
-          </svg>
+          <div class="plans">
+            <img src="assets/img/plan01.png" alt="Floor plan 1 as an Environment: the free space is filled, walls and obstacles are holes" loading="lazy">
+            <img src="assets/img/plan02.png" alt="Floor plan 2 as an Environment: the free space is filled, walls and obstacles are holes" loading="lazy">
+            <img src="assets/img/plan03.png" alt="Floor plan 3 as an Environment: the free space is filled, walls and obstacles are holes" loading="lazy">
+            <img src="assets/img/plan04.png" alt="Floor plan 4 as an Environment: the free space is filled, walls and obstacles are holes" loading="lazy">
+            <img src="assets/img/plan05.png" alt="Floor plan 5 as an Environment: the free space is filled, walls and obstacles are holes" loading="lazy">
+            <img src="assets/img/plan06.png" alt="Floor plan 6 as an Environment: the free space is filled, walls and obstacles are holes" loading="lazy">
+          </div>
 
           <h3 id="dependencies">Dependencies</h3>
           <p>Syntaktika is written in C# and builds on a few open libraries. All of them ship with the plugin,
@@ -234,21 +249,76 @@ https://gonzalovegas.com/syntaktika-site/</pre>
       </div>
     </section>
 
-    <!-- final cta -->
-    <section class="cta-band">
-      <div class="wrap wide">
-        <h2>Analyse your first floor plan</h2>
-        <p>Open a template, swap in your own curves, and read the results in Grasshopper.</p>
-        <div class="cta-row">
-          <a class="btn btn-light" href="templates.html">Open the templates</a>
-          <a class="btn btn-ghost" href="components.html">Component reference</a>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="site-footer">
     <div class="wrap wide">Syntaktika · MIT License · © Gonzalo Vegas</div>
   </footer>
+  <script>
+    // Replay button: appears on hover over any card image that is a GIF, and restarts it from the
+    // first frame. Changing the URL's #fragment makes the browser restart the animation without
+    // downloading the file again.
+    document.querySelectorAll('.card-media').forEach(function (m) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'replay'; b.setAttribute('aria-label', 'Replay animation');
+      b.title = 'Replay animation';
+      b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 3v5h5"/></svg>';
+      function current() {
+        return Array.prototype.find.call(m.querySelectorAll('img'), function (img) { return !img.hidden; });
+      }
+      m._syncReplay = function () {
+        var img = current();
+        b.hidden = !(img && /\.gif(#|$)/i.test(img.getAttribute('src') || ''));
+      };
+      b.addEventListener('click', function () {
+        var img = current(); if (!img) return;
+        img.src = img.getAttribute('src').split('#')[0] + '#replay-' + Date.now();
+      });
+      m.appendChild(b);
+      m._syncReplay();
+    });
+
+    // Card galleries: a row of  < dots >  under the image, and the image's data-title as a caption.
+    // Images load only when first shown.
+    document.querySelectorAll('.gallery').forEach(function (g) {
+      var imgs = Array.prototype.slice.call(g.querySelectorAll('img'));
+      if (imgs.length < 2) return;
+      var i = 0, dots = [];
+      var title = document.createElement('p');
+      title.className = 'gallery-title';
+      title.setAttribute('aria-live', 'polite');
+      function show(n) {
+        i = (n + imgs.length) % imgs.length;
+        imgs.forEach(function (img, k) {
+          if (k === i && img.dataset.src) { img.src = img.dataset.src; img.removeAttribute('data-src'); }
+          img.hidden = k !== i;
+          dots[k].setAttribute('aria-current', k === i ? 'true' : 'false');
+        });
+        title.textContent = imgs[i].dataset.title || '';
+        if (g._syncReplay) g._syncReplay();
+      }
+      function btn(cls, label, text, onClick) {
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = cls; b.setAttribute('aria-label', label); b.textContent = text;
+        b.addEventListener('click', onClick); return b;
+      }
+      var nav = document.createElement('div');
+      nav.className = 'gallery-nav';
+      nav.appendChild(btn('gallery-btn', 'Previous image', '‹', function () { show(i - 1); }));
+      imgs.forEach(function (_, k) {
+        var d = btn('gallery-dot', 'Image ' + (k + 1) + ' of ' + imgs.length, '', function () { show(k); });
+        dots.push(d); nav.appendChild(d);
+      });
+      nav.appendChild(btn('gallery-btn', 'Next image', '›', function () { show(i + 1); }));
+      g.parentNode.insertBefore(title, g.nextSibling);
+      g.parentNode.insertBefore(nav, title);
+      g.tabIndex = 0;
+      g.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft') { show(i - 1); e.preventDefault(); }
+        if (e.key === 'ArrowRight') { show(i + 1); e.preventDefault(); }
+      });
+      show(0);
+    });
+  </script>
 </body>
 </html>
